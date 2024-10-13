@@ -5,4 +5,5 @@
 [node name="main" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_c0mla")]
+texture_filter = 1
 position = Vector2(425, 74)

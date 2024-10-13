@@ -230,5 +230,4 @@ animation = &"paradoMach"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 0)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_h3fbs")
