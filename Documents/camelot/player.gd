@@ -10,7 +10,7 @@ var animationStop = "parado"
 @onready var animatedSprite : AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
-	GameMananger.coletarMach.connect(sla)
+	pass
 	
 
 func _physics_process(delta):
@@ -32,8 +32,9 @@ func _physics_process(delta):
 		velocity.y += speed
 
 	if Input.is_action_just_pressed("pegarArma"):
-		animationMovment = "andandoMach"
-		animationStop = "paradoMach"
+		if( GameMananger.collectWeapon()):
+			animationMovment = "andandoMach"
+			animationStop = "paradoMach"
 	move_and_slide()
 
 	
@@ -50,5 +51,4 @@ func _physics_process(delta):
 		animatedSprite.play("morrendo1")
 		if( animatedSprite.frame == 2):
 			get_tree().paused = true
-func sla():
-	print("ola")
+
