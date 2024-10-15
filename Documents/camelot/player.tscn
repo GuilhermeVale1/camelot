@@ -218,16 +218,18 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3fbs"]
-size = Vector2(9, 24)
+size = Vector2(3, 4.8)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["jogador"]]
 scale = Vector2(5, 5)
 script = ExtResource("1_o2e8q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.6, -0.4)
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_xrqnv")
-animation = &"paradoMach"
+animation = &"andando"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 0)
+position = Vector2(-1.7, -0.6)
 shape = SubResource("RectangleShape2D_h3fbs")

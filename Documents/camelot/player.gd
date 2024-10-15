@@ -10,7 +10,8 @@ var animationStop = "parado"
 @onready var animatedSprite : AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
-	pass
+	GameMananger.coletarMach.connect(sla)
+	
 
 func _physics_process(delta):
 	# Reinicia a velocidade a cada frame
@@ -49,7 +50,5 @@ func _physics_process(delta):
 		animatedSprite.play("morrendo1")
 		if( animatedSprite.frame == 2):
 			get_tree().paused = true
-		
-		
-	
-		
+func sla():
+	print("ola")
