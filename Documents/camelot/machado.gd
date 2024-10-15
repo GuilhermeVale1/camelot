@@ -18,13 +18,8 @@ func _on_body_entered(body):
 		GameMananger.areaMachado()
 		body.z_index = 1
 	
-		
-		
-		
 func coletaArma():
 	queue_free()
-
-
 
 func _on_body_exited(body):
 	if(body.is_in_group("jogador")):

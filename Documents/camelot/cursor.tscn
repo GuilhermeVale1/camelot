@@ -99,7 +99,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="reticulo" type="Node2D"]
@@ -107,5 +107,6 @@ scale = Vector2(2, 2)
 script = ExtResource("1_fi4uc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_tbqkm")
 frame_progress = 0.634016

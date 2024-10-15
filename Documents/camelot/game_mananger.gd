@@ -14,7 +14,7 @@ func collectWeapon():
 		emit_signal("coletarArma")
 		return true
 	else:
-		return false	
+		return false
 	
 	 
 	  
