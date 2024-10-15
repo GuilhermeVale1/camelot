@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed : float = 200.0
+var speed : float = 300.0
 var life : float = 300.0
 var seconds = 0
 var animationMovment = "andando"
@@ -35,6 +35,18 @@ func _physics_process(delta):
 		if( GameMananger.collectWeapon()):
 			animationMovment = "andandoMach"
 			animationStop = "paradoMach"
+			
+	var x_mov = Input.get_action_strength("direita") - Input.get_action_strength("esquerda")
+	# x_mov = 1 - 0 = 1 mov = right 
+	# x_mov = 0 - 1 = -1 mov = left 
+	
+	var y_mov = Input.get_action_strength("baixo") - Input.get_action_strength("cima")
+	# y_mov = 1 - 0 = 1 mov = down 
+	# y_mov = 0 - 1 = -1 mov = up
+	 
+	var mov = Vector2(x_mov, y_mov)
+			
+	velocity = mov.normalized()*speed			
 	move_and_slide()
 
 	

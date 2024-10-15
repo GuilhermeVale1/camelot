@@ -225,10 +225,11 @@ scale = Vector2(5, 5)
 script = ExtResource("1_o2e8q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(-1.6, -0.4)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_xrqnv")
-animation = &"andando"
+animation = &"parado"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.7, -0.6)

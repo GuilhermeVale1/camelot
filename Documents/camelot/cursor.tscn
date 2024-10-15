@@ -107,6 +107,7 @@ scale = Vector2(2, 2)
 script = ExtResource("1_fi4uc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_tbqkm")
 frame_progress = 0.634016
