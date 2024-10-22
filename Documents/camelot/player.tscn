@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://n5tif21uvnb0"]
+[gd_scene load_steps=41 format=3 uid="uid://n5tif21uvnb0"]
 
 [ext_resource type="Texture2D" uid="uid://c31c46ydl6n1n" path="res://assets/01-walk/sprPWalkUnarmed2_strip8.png" id="1_3d1yx"]
 [ext_resource type="Script" path="res://player.gd" id="1_o2e8q"]
@@ -70,10 +70,6 @@ region = Rect2(264, 0, 44, 44)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ane4y"]
 atlas = ExtResource("3_iqdxn")
 region = Rect2(308, 0, 44, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_odkoo"]
-atlas = ExtResource("4_ad7mk")
-region = Rect2(0, 0, 60, 60)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g742l"]
 atlas = ExtResource("4_ad7mk")
@@ -197,9 +193,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_odkoo")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_g742l")
 }, {
 "duration": 1.0,
@@ -287,7 +280,6 @@ position = Vector2(-1.6, -0.4)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_xrqnv")
 animation = &"golpeMach"
-frame_progress = 0.440516
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.7, -0.6)
