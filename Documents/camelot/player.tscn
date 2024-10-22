@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://n5tif21uvnb0"]
+[gd_scene load_steps=42 format=3 uid="uid://n5tif21uvnb0"]
 
 [ext_resource type="Texture2D" uid="uid://c31c46ydl6n1n" path="res://assets/01-walk/sprPWalkUnarmed2_strip8.png" id="1_3d1yx"]
 [ext_resource type="Script" path="res://player.gd" id="1_o2e8q"]
 [ext_resource type="Texture2D" uid="uid://6q24m4anvww1" path="res://assets/03-death/sprPBackCut_strip3.png" id="2_7b72u"]
 [ext_resource type="Texture2D" uid="uid://bl6ovuagjbjma" path="res://assets/03-death/sprPBackBlunt2_strip5.png" id="3_4mmk3"]
 [ext_resource type="Texture2D" uid="uid://cao1e6gwhfj0v" path="res://assets/01-walk/sprPWalkAxe_strip8.png" id="3_iqdxn"]
+[ext_resource type="Texture2D" uid="uid://b6uphbnvygx8y" path="res://assets/02-attack/sprPAttackAxe_strip7.png" id="4_ad7mk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2n8u"]
 atlas = ExtResource("1_3d1yx")
@@ -69,6 +70,34 @@ region = Rect2(264, 0, 44, 44)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ane4y"]
 atlas = ExtResource("3_iqdxn")
 region = Rect2(308, 0, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odkoo"]
+atlas = ExtResource("4_ad7mk")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g742l"]
+atlas = ExtResource("4_ad7mk")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enjiw"]
+atlas = ExtResource("4_ad7mk")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gy5b"]
+atlas = ExtResource("4_ad7mk")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id1ia"]
+atlas = ExtResource("4_ad7mk")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08h0r"]
+atlas = ExtResource("4_ad7mk")
+region = Rect2(300, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gevr0"]
+atlas = ExtResource("4_ad7mk")
+region = Rect2(360, 0, 60, 60)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_irp4r"]
 atlas = ExtResource("2_7b72u")
@@ -168,6 +197,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_odkoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g742l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enjiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gy5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_id1ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08h0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gevr0")
+}],
+"loop": true,
+"name": &"golpeMach",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_irp4r")
 }, {
 "duration": 1.0,
@@ -220,6 +275,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3fbs"]
 size = Vector2(3, 4.8)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_74k2d"]
+radius = 5.2
+
 [node name="player" type="CharacterBody2D" groups=["jogador"]]
 scale = Vector2(5, 5)
 script = ExtResource("1_o2e8q")
@@ -229,8 +287,28 @@ texture_filter = 1
 position = Vector2(-1.6, -0.4)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_xrqnv")
+<<<<<<< HEAD
 animation = &"parado"
+=======
+animation = &"golpeMach"
+frame_progress = 0.440516
+>>>>>>> a2b4e08 (golpe machado pronto)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.7, -0.6)
 shape = SubResource("RectangleShape2D_h3fbs")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-1.4, 0.2)
+shape = SubResource("CircleShape2D_74k2d")
+
+[node name="deal_attack" type="Timer" parent="."]
+wait_time = 0.46
+
+[node name="cooldawn" type="Timer" parent="."]
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
+[connection signal="timeout" from="deal_attack" to="." method="_on_deal_attack_timeout"]
