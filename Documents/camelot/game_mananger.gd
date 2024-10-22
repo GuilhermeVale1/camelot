@@ -7,7 +7,7 @@ var shapeWeapon : bool = false
 func _ready():
 	pass
 
-#GameMananger -> Usado para gerênciar o jogo, como tela de pause, interface gráfica, etc. 
+
 
 func collectWeapon():
 	if(shapeWeapon == true):
