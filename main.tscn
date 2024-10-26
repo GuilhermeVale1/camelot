@@ -24,3 +24,6 @@ position = Vector2(410.5, 24)
 
 [node name="espada" parent="." instance=ExtResource("5_h2rtw")]
 position = Vector2(215.5, 58)
+
+[node name="Area2D2" parent="." instance=ExtResource("2_c0k8l")]
+position = Vector2(126.5, 171.5)

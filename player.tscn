@@ -617,14 +617,12 @@ animation = &"golpe"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.9, -0.4)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_h3fbs")
 
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(1.45, -0.4)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_0bgue")
 
 [node name="deal_attack" type="Timer" parent="."]
