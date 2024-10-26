@@ -6,6 +6,11 @@ var seconds = 0
 var animationMovment = "andando"
 var animationStop = "parado"
 var atack = false
+var dictArma = {
+"machado":["andandoMach" ,"paradoMach" , "golpeMach"] , 
+"martelo":["andandoMat" , "paradoMat" , "golpeMat"] , 
+"espada":["andandoEsp" , "paradoEsp", "golpeEsp"], 
+"semArma":["andando" , "parado", "golpe"] }
 
 
 @onready var animatedSprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -35,8 +40,9 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("pegarArma"):
 		if( GameMananger.collectWeapon()):
-			animationMovment = "andandoMach"
-			animationStop = "paradoMach"
+			var nomeArma = GameMananger.verNome()	
+			animationMovment = dictArma[nomeArma][0]
+			animationStop = dictArma[nomeArma][1]
 	
 	var x_mov = Input.get_action_strength("direita") - Input.get_action_strength("esquerda")
 	# x_mov = 1 - 0 = 1 mov = right 
@@ -55,10 +61,10 @@ func _physics_process(delta):
 	look_at(get_global_mouse_position())
 
 	
-	if (velocity.length() > 0 and atack == false):
+	if (velocity.length() > 0 and !atack ):
 		animatedSprite.play(animationMovment)
 	
-	elif(velocity.x == 0 and velocity.y == 0 and atack == false):
+	elif(velocity.x == 0 and velocity.y == 0 and !atack):
 		animatedSprite.play(animationStop)
 	
 
@@ -66,10 +72,12 @@ func _physics_process(delta):
 
 func attack():
 	if Input.is_action_just_pressed("golpe"):
-		if(animationMovment == "andandoMach" and animationStop == "paradoMach"):
+		var nome = GameMananger.verNome()
+		 	
+		if(!atack):
 			atack = true
-			animatedSprite.play("golpeMach")
-			
+			animatedSprite.play(dictArma[nome][2])
+				
 			$deal_attack.start()
 	
 func _on_hitbox_area_entered(area):

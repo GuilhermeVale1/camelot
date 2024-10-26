@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgt136uslpqh7"]
+
+[ext_resource type="Script" path="res://Arma.gd" id="1_dw3yy"]
+
+[node name="Arma" type="Area2D"]
+script = ExtResource("1_dw3yy")

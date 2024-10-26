@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bp1jc8yepup4j"]
+[gd_scene load_steps=6 format=3 uid="uid://bp1jc8yepup4j"]
 
 [ext_resource type="PackedScene" uid="uid://n5tif21uvnb0" path="res://player.tscn" id="1_c0mla"]
 [ext_resource type="PackedScene" uid="uid://yku6dd2eo6w5" path="res://machado.tscn" id="2_c0k8l"]
 [ext_resource type="PackedScene" uid="uid://dqvneodqmnvgf" path="res://cursor.tscn" id="3_dhrok"]
+[ext_resource type="PackedScene" uid="uid://d3ua2y6p31255" path="res://martelo.tscn" id="4_ba1p1"]
+[ext_resource type="PackedScene" uid="uid://c4a78s675lmk1" path="res://espada.tscn" id="5_h2rtw"]
 
 [node name="main" type="Node2D"]
 scale = Vector2(2, 2)
@@ -16,3 +18,9 @@ position = Vector2(218, 118.5)
 
 [node name="reticulo" parent="." instance=ExtResource("3_dhrok")]
 position = Vector2(95, 68)
+
+[node name="martelo" parent="." instance=ExtResource("4_ba1p1")]
+position = Vector2(410.5, 24)
+
+[node name="espada" parent="." instance=ExtResource("5_h2rtw")]
+position = Vector2(215.5, 58)
