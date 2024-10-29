@@ -19,6 +19,9 @@ func _ready():
 	pass
 	
 
+func _process(delta):
+	pass
+
 func _physics_process(delta):
 	# Reinicia a velocidade a cada frame
 	velocity = Vector2()
@@ -91,3 +94,10 @@ func _on_hitbox_area_exited(area):
 func _on_deal_attack_timeout():
 	$deal_attack.stop()
 	atack = false
+
+
+func _on_hitbox_body_entered(body):
+	if(body.is_in_group("inimigo")):
+		
+		if(atack):
+			print("ataque pegou")

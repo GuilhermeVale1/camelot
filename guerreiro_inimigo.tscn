@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvjvfwomawu2k"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_61x2s"]
+[ext_resource type="Texture2D" uid="uid://cao1e6gwhfj0v" path="res://assets/01-walk/sprPWalkAxe_strip8.png" id="2_o71pv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mgdc"]
+atlas = ExtResource("2_o71pv")
+region = Rect2(0, 0, 50, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5aste"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mgdc")
+}],
+"loop": true,
+"name": &"parado",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idwq1"]
+size = Vector2(4, 6)
+
+[node name="guerreiroInimigo" type="CharacterBody2D" groups=["inimigo"]]
+script = ExtResource("1_61x2s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_5aste")
+animation = &"parado"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_idwq1")

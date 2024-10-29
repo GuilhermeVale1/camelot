@@ -1,6 +1,7 @@
 extends Node2D
  # Sinal para coletar o machado
 signal coletarArma
+signal danoInimigo
 var nameArma : String 
 var idArma 
 var armaColetada = "semArma"

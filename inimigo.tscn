@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://blkxdaluuv7s6"]
+
+[ext_resource type="Script" path="res://inimigo.gd" id="1_s4wku"]
+
+[node name="inimigo" type="CharacterBody2D" groups=["inimigo"]]
+script = ExtResource("1_s4wku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
