@@ -41,6 +41,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("baixo"):
 		velocity.y += speed
 
+	if Input.is_action_just_pressed("throw"): # Lançar arma com Q
+		print('lançar arma')
+
 	if Input.is_action_just_pressed("pegarArma"):
 		if( GameMananger.collectWeapon()):
 			var nomeArma = GameMananger.verNome()	
