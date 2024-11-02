@@ -1,6 +1,7 @@
 extends Node2D
 
-var weapon_scene: PackedScene = preload("res://machado.tscn") # faça a string dinâmica para obter resultados diferentes.
+var weapon_name = GameMananger.armaColetada
+var weapon_scene: PackedScene = load("res://" + weapon_name + ".tscn")
 
 var speed: 		float = 600.0
 var spin_speed: float = 30.0
