@@ -2,23 +2,19 @@ extends Node2D
  # Sinal para coletar o machado
 signal coletarArma
 signal danoInimigo
-var nameArma : String 
+var nameArma: String 
 var idArma 
 var armaColetada = "semArma"
 # Called when the node enters the scene tree for the first time.
-var shapeWeapon : bool = false
+var shapeWeapon: bool = false
 func _ready():
 	pass
 
-
-
 func collectWeapon():
-	if(shapeWeapon):
-		armaColetada = nameArma
-		emit_signal("coletarArma" , idArma)
-		return true
-	else:
-		return false
+	if (!shapeWeapon): return false
+	armaColetada = nameArma
+	emit_signal("coletarArma" , idArma)
+	return true
 	
 func verNome():
 	return armaColetada
@@ -29,9 +25,6 @@ func areaArma(id , nome):
 	shapeWeapon = true
 	print(nameArma)
 
-func foraArma():
+func foraArma(): # não funciona
 	shapeWeapon = false
 	nameArma = "semArma"
-	
-	
-	
