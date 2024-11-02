@@ -4,12 +4,22 @@ var weapon_name = GameMananger.armaColetada
 var weapon_scene: PackedScene = load("res://" + weapon_name + ".tscn")
 
 var speed: 		float = 600.0
-var spin_speed: float = 30.0
+var spin_speed: float = 50.0
 var direction:  Vector2
 
 var timer: Timer
 
 func _ready():
+	var sprite_name: String
+
+	if		weapon_name == "machado":
+		sprite_name = "Axe"
+	elif	weapon_name == "espada":
+		sprite_name = "Sword"
+	else:
+		sprite_name = "Hammer"
+	
+	$Sprite2D.texture = load("res://assets/weapons/spr" + sprite_name + ".png")
 	timer = Timer.new()
 	add_child(timer)
 
