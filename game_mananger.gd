@@ -2,6 +2,9 @@ extends Node2D
  # Sinal para coletar o machado
 signal coletarArma
 signal danoInimigo
+
+var player_is_armed: bool = false
+
 var nameArma: String 
 var idArma 
 var armaColetada = "semArma"
@@ -12,7 +15,8 @@ func _ready():
 
 func collectWeapon():
 	if (!shapeWeapon): return false
-	armaColetada = nameArma
+	player_is_armed = true
+	armaColetada 	= nameArma
 	emit_signal("coletarArma" , idArma)
 	return true
 	
@@ -25,6 +29,6 @@ func areaArma(id , nome):
 	shapeWeapon = true
 	print(nameArma)
 
-func foraArma(): # não funciona
+func foraArma():
 	shapeWeapon = false
 	nameArma = "semArma"

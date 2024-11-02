@@ -613,7 +613,7 @@ script = ExtResource("1_o2e8q")
 position = Vector2(-1.6, -0.4)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_xrqnv")
-animation = &"golpe"
+animation = &"andando"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.9, -0.4)

@@ -39,8 +39,12 @@ func _physics_process(delta):
 		velocity.y += speed
 
 	if Input.is_action_just_pressed("throw"): # Lançar arma com Q
-		if GameMananger.armaColetada == "semArma": return # não funciona!
-		GameMananger.foraArma() # não funciona!
+		if !GameMananger.player_is_armed: return
+		
+		animationMovment	= "andando"
+		animationStop		= "parado"
+		animatedSprite.play("golpe")
+		GameMananger.player_is_armed = false
 		
 		var player_projectile = projectile_scene.instantiate() as Node2D
 		get_tree().current_scene.add_child(player_projectile)
@@ -64,12 +68,10 @@ func _physics_process(delta):
 	 
 	var mov = Vector2(x_mov, y_mov)
 			
-	velocity = mov.normalized()*speed
+	velocity = mov.normalized() * speed
 	move_and_slide()
 
-	
 	look_at(get_global_mouse_position())
-
 	
 	if (velocity.length() > 0 and !atack ):
 		animatedSprite.play(animationMovment)
@@ -80,7 +82,9 @@ func _physics_process(delta):
 func attack():
 	if Input.is_action_just_pressed("golpe"):
 		var nome = GameMananger.verNome()
-		 	
+		
+		if !GameMananger.player_is_armed: nome = "semArma"
+		
 		if(!atack):
 			atack = true
 			animatedSprite.play(dictArma[nome][2])
