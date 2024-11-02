@@ -4,7 +4,7 @@ var weapon_name = GameMananger.armaColetada
 var weapon_scene: PackedScene = load("res://" + weapon_name + ".tscn")
 
 var speed: 		float = 600.0
-var spin_speed: float = 50.0
+var spin_speed: float = randi_range(30, 50)
 var direction:  Vector2
 
 var timer: Timer
@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 func projectile_stopped() -> void:
 	var dropped_weapon		= weapon_scene.instantiate() as Node2D
 	dropped_weapon.position = position
+	dropped_weapon.rotation = rotation
 	get_tree().current_scene.add_child(dropped_weapon)
 	
 	queue_free()
