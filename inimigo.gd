@@ -2,7 +2,6 @@ class_name Inimigo
 
 extends CharacterBody2D
 
-
 var nome : String
 var id : int
 var golpe = false

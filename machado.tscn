@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_su1hc"]
 size = Vector2(57, 27)
 
-[node name="Area2D" type="Area2D" groups=["machado"]]
+[node name="machado" type="Area2D" groups=["machado"]]
 script = ExtResource("1_fbcdr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

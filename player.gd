@@ -53,11 +53,14 @@ func _physics_process(delta):
 		print('lançar arma')
 
 	if Input.is_action_just_pressed("pegarArma"):
-		if(GameMananger.collectWeapon()):
+		if (GameMananger.collectWeapon()):
 			var nomeArma		= GameMananger.verNome()	
 			animationMovment	= dictArma[nomeArma][0]
 			animationStop		= dictArma[nomeArma][1]
-	
+			
+			var areas = $hitbox.get_overlapping_areas()
+			for area in areas: print(area.name)
+			
 	var x_mov = Input.get_action_strength("direita") -	Input.get_action_strength("esquerda")
 	var y_mov = Input.get_action_strength("baixo") -	Input.get_action_strength("cima")
 	# x_mov = 1 - 0 =  1 mov = right 

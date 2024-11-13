@@ -30,8 +30,7 @@ func _on_body_entered(body):
 		body.z_index = 1
 	
 func coletaArma(armaId):
-	if(armaId == id and arma):
-		queue_free()
+	if (armaId == id and arma): queue_free()
 	
 
 func _on_body_exited(body):

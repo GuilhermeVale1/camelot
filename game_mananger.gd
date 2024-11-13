@@ -17,7 +17,7 @@ func collectWeapon():
 	if (!shapeWeapon): return false
 	player_is_armed = true
 	armaColetada 	= nameArma
-	emit_signal("coletarArma" , idArma)
+	emit_signal("coletarArma", idArma)
 	return true
 	
 func verNome():
