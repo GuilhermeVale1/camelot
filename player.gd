@@ -14,6 +14,7 @@ var dictArma = {
 }
 
 var projectile_scene: PackedScene
+var can_swap_weapons: bool = false
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -22,6 +23,13 @@ func _ready():
 
 func _process(delta):
 	pass
+
+func drop_equipped_weapon(weapon_name):
+		var dropped_weapon = load("res://" + weapon_name + ".tscn").instantiate() as Node2D
+		get_tree().current_scene.add_child(dropped_weapon)
+		
+		dropped_weapon.position = position
+		dropped_weapon.rotation = randf_range(0, 2 * PI)
 
 func _physics_process(delta):
 	# Reinicia a velocidade a cada frame
@@ -39,7 +47,7 @@ func _physics_process(delta):
 		velocity.y += speed
 
 	if Input.is_action_just_pressed("throw"): # Lançar arma com Q
-		if !GameMananger.player_is_armed: return
+		if not GameMananger.player_is_armed: return
 		
 		animationMovment	= "andando"
 		animationStop		= "parado"
@@ -50,17 +58,24 @@ func _physics_process(delta):
 		get_tree().current_scene.add_child(player_projectile)
 		player_projectile.position  = position
 		player_projectile.direction = Vector2.RIGHT.rotated(rotation).normalized()
-		print('lançar arma')
+		can_swap_weapons = false
 
 	if Input.is_action_just_pressed("pegarArma"):
-		if (GameMananger.collectWeapon()):
-			var nomeArma		= GameMananger.verNome()	
-			animationMovment	= dictArma[nomeArma][0]
-			animationStop		= dictArma[nomeArma][1]
-			
-			var areas = $hitbox.get_overlapping_areas()
-			for area in areas: print(area.name)
-			
+		if not GameMananger.collectWeapon(): return
+		
+		var weapon_name = GameMananger.verNome()	
+		animationMovment	= dictArma[weapon_name][0]
+		animationStop		= dictArma[weapon_name][1]
+		
+		if not can_swap_weapons:
+			can_swap_weapons = true
+			return
+		
+		drop_equipped_weapon(GameMananger.previous_weapon_name)
+		
+		var area = $hitbox.get_overlapping_areas()[0]
+		if area: area.queue_free()
+		
 	var x_mov = Input.get_action_strength("direita") -	Input.get_action_strength("esquerda")
 	var y_mov = Input.get_action_strength("baixo") -	Input.get_action_strength("cima")
 	# x_mov = 1 - 0 =  1 mov = right 
@@ -88,7 +103,7 @@ func attack():
 		
 		if !GameMananger.player_is_armed: nome = "semArma"
 		
-		if(!atack):
+		if !atack:
 			atack = true
 			animatedSprite.play(dictArma[nome][2])
 				
