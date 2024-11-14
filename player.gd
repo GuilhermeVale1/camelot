@@ -73,8 +73,8 @@ func _physics_process(delta):
 		
 		drop_equipped_weapon(GameMananger.previous_weapon_name)
 		
-		var area = $hitbox.get_overlapping_areas()[0]
-		if area: area.queue_free()
+		var areas = $hitbox.get_overlapping_areas()
+		if areas and 0 in areas: areas[0].queue_free()
 		
 	var x_mov = Input.get_action_strength("direita") -	Input.get_action_strength("esquerda")
 	var y_mov = Input.get_action_strength("baixo") -	Input.get_action_strength("cima")
