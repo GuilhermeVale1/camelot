@@ -1,8 +1,12 @@
 class_name Inimigo
 
 extends CharacterBody2D
+
 var animationStop = "parado"
 var animationMovment = "andando"
+
+
+
 var nome : String
 var id : int
 
