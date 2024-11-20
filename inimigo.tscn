@@ -1,12 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://blkxdaluuv7s6"]
+[gd_scene load_steps=4 format=3 uid="uid://blkxdaluuv7s6"]
 
 [ext_resource type="Script" path="res://inimigo.gd" id="1_s4wku"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r6fyd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxrpd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a06lp"]
+radius = 21.0
 
 [node name="inimigo" type="CharacterBody2D" groups=["inimigo"]]
 collision_mask = 3
 script = ExtResource("1_s4wku")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_r6fyd")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["inimigo"]]
+shape = SubResource("RectangleShape2D_pxrpd")
+
+[node name="detectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectionArea"]
+shape = SubResource("CircleShape2D_a06lp")
+
+[connection signal="body_entered" from="detectionArea" to="." method="_on_detection_area_body_entered"]

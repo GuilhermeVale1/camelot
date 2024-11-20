@@ -607,6 +607,7 @@ size = Vector2(3.9, 5.2)
 
 [node name="player" type="CharacterBody2D" groups=["jogador"]]
 scale = Vector2(5, 5)
+collision_layer = 3
 script = ExtResource("1_o2e8q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -614,14 +615,15 @@ position = Vector2(-1.6, -0.4)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_xrqnv")
 animation = &"andando"
+frame_progress = 0.729494
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.9, -0.4)
 shape = SubResource("RectangleShape2D_h3fbs")
 
-[node name="hitbox" type="Area2D" parent="."]
+[node name="hitbox" type="Area2D" parent="." groups=["areaPlayer"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" groups=["areaPlayer"]]
 position = Vector2(1.45, -0.4)
 shape = SubResource("RectangleShape2D_0bgue")
 
@@ -633,4 +635,5 @@ wait_time = 0.46
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="timeout" from="deal_attack" to="." method="_on_deal_attack_timeout"]
