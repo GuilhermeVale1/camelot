@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://blkxdaluuv7s6"]
+[gd_scene load_steps=6 format=3 uid="uid://blkxdaluuv7s6"]
 
 [ext_resource type="Script" path="res://inimigo.gd" id="1_s4wku"]
 
@@ -17,13 +17,15 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"golpe",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [],
 "loop": true,
 "name": &"parado",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33gmp"]
 
 [node name="inimigo" type="CharacterBody2D" groups=["inimigo"]]
 collision_mask = 3
@@ -41,5 +43,20 @@ shape = SubResource("CircleShape2D_a06lp")
 sprite_frames = SubResource("SpriteFrames_hi5lt")
 animation = &"golpe"
 
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_33gmp")
+
+[node name="reacao" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.46
+
 [connection signal="body_entered" from="detectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="reacao" to="." method="_on_reacao_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

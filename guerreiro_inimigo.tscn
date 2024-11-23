@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dvjvfwomawu2k"]
+[gd_scene load_steps=25 format=3 uid="uid://dvjvfwomawu2k"]
 
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_61x2s"]
 [ext_resource type="Texture2D" uid="uid://cgndyjgg3wrga" path="res://inimigo/enemy_completo/eWalk/sprEWalkBrokenSmallSword_strip8.png" id="2_8xqfr"]
+[ext_resource type="Texture2D" uid="uid://b0d23s2y411fk" path="res://inimigo/enemy_completo/eAttack/sprEAttackBrokenSmallSword_strip9.png" id="3_e2511"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ii8cy"]
 atlas = ExtResource("2_8xqfr")
@@ -34,6 +35,38 @@ region = Rect2(192, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxlob"]
 atlas = ExtResource("2_8xqfr")
 region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wicvs"]
+atlas = ExtResource("3_e2511")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf36b"]
+atlas = ExtResource("3_e2511")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn0ui"]
+atlas = ExtResource("3_e2511")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li68a"]
+atlas = ExtResource("3_e2511")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fer60"]
+atlas = ExtResource("3_e2511")
+region = Rect2(300, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw4ah"]
+atlas = ExtResource("3_e2511")
+region = Rect2(360, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jp3x"]
+atlas = ExtResource("3_e2511")
+region = Rect2(420, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdmbb"]
+atlas = ExtResource("3_e2511")
+region = Rect2(480, 0, 60, 60)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h02kl"]
 atlas = ExtResource("2_8xqfr")
@@ -70,10 +103,34 @@ animations = [{
 "name": &"andando",
 "speed": 8.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wicvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yf36b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn0ui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li68a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fer60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw4ah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jp3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdmbb")
+}],
 "loop": true,
 "name": &"golpe",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -90,7 +147,11 @@ size = Vector2(3, 6)
 [sub_resource type="CircleShape2D" id="CircleShape2D_egamf"]
 radius = 18.1108
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4eedc"]
+size = Vector2(4, 6)
+
 [node name="guerreiroInimigo" type="CharacterBody2D" groups=["inimigo"]]
+rotation = -6.28319
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_61x2s")
@@ -98,7 +159,8 @@ script = ExtResource("1_61x2s")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_5aste")
-animation = &"parado"
+animation = &"golpe"
+frame_progress = 0.397303
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["inimigo"]]
 position = Vector2(-0.5, 0)
@@ -111,5 +173,20 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectionArea"]
 shape = SubResource("CircleShape2D_egamf")
 
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(2, 4.37114e-07)
+shape = SubResource("RectangleShape2D_4eedc")
+
+[node name="reacao" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.46
+
 [connection signal="body_entered" from="detectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="reacao" to="." method="_on_reacao_timeout"]

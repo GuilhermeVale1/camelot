@@ -20,7 +20,8 @@ var can_swap_weapons: bool = false
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
-	projectile_scene = preload("res://PlayerProjectile.tscn")	
+	projectile_scene = preload("res://PlayerProjectile.tscn")
+	GameMananger.danoPlayer.connect(deadPlayer)		
 	
 
 func _process(delta):
@@ -143,3 +144,6 @@ func _on_hitbox_body_exited(body):
 		if body.has_method("AreaGolpe"):
 			body.AreaGolpe(areaHit)
 		
+func deadPlayer():
+	queue_free()
+	

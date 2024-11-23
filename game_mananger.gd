@@ -2,6 +2,7 @@ extends Node2D
 # Sinal para coletar o machado
 signal coletarArma
 signal danoInimigo
+signal danoPlayer
 
 var player_is_armed: bool = false
 var previous_weapon_name: String
@@ -38,3 +39,7 @@ func foraArma():
 func golpeInimigo():
 	print("golpeInimigo ativo")
 	emit_signal("danoInimigo")
+	
+func golpePlayer():
+	emit_signal("danoPlayer")
+	
