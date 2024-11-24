@@ -262,7 +262,7 @@ script = ExtResource("1_61x2s")
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_5aste")
 animation = &"golpe"
-frame_progress = 0.72753
+frame_progress = 0.544757
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["inimigo"]]
 position = Vector2(-0.5, 0)

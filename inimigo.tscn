@@ -16,12 +16,37 @@ animations = [{
 }, {
 "frames": [],
 "loop": true,
+"name": &"andandoMach",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
 "name": &"golpe",
 "speed": 10.0
 }, {
 "frames": [],
 "loop": true,
+"name": &"golpeMach",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"morrendo",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"morto",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
 "name": &"parado",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"paradoMach",
 "speed": 5.0
 }]
 
@@ -41,7 +66,7 @@ shape = SubResource("CircleShape2D_a06lp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hi5lt")
-animation = &"golpe"
+animation = &"golpeMach"
 
 [node name="hitbox" type="Area2D" parent="."]
 
@@ -54,9 +79,12 @@ wait_time = 0.5
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.46
 
+[node name="morrendo" type="Timer" parent="."]
+
 [connection signal="body_entered" from="detectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="timeout" from="reacao" to="." method="_on_reacao_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="morrendo" to="." method="_on_morrendo_timeout"]
