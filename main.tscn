@@ -12,7 +12,7 @@ scale = Vector2(2, 2)
 
 [node name="player" parent="." instance=ExtResource("1_c0mla")]
 texture_filter = 1
-position = Vector2(70.5, 103)
+position = Vector2(105, 108)
 
 [node name="Area2D" parent="." instance=ExtResource("2_c0k8l")]
 position = Vector2(218, 118.5)
