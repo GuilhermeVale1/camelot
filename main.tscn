@@ -12,7 +12,7 @@ scale = Vector2(2, 2)
 
 [node name="player" parent="." instance=ExtResource("1_c0mla")]
 texture_filter = 1
-position = Vector2(105, 108)
+position = Vector2(61.5, 243.5)
 
 [node name="Area2D" parent="." instance=ExtResource("2_c0k8l")]
 position = Vector2(218, 118.5)
@@ -21,16 +21,16 @@ position = Vector2(218, 118.5)
 position = Vector2(95, 68)
 
 [node name="martelo" parent="." instance=ExtResource("4_ba1p1")]
-position = Vector2(410.5, 24)
+position = Vector2(74.5, 269)
 
 [node name="espada" parent="." instance=ExtResource("5_h2rtw")]
 position = Vector2(215.5, 58)
 
 [node name="Area2D2" parent="." instance=ExtResource("2_c0k8l")]
-position = Vector2(126.5, 171.5)
+position = Vector2(78.5, 252)
 
 [node name="guerreiroInimigo" parent="." instance=ExtResource("6_h7nrr")]
-position = Vector2(149.5, 108)
+position = Vector2(208.5, 87)
 scale = Vector2(5, 5)
 
 [node name="guerreiroInimigo2" parent="." instance=ExtResource("6_h7nrr")]
