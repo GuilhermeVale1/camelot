@@ -253,7 +253,6 @@ radius = 18.1108
 size = Vector2(4, 6)
 
 [node name="guerreiroInimigo" type="CharacterBody2D" groups=["inimigo"]]
-texture_filter = 1
 rotation = -6.28319
 collision_layer = 5
 collision_mask = 5
@@ -283,7 +282,7 @@ position = Vector2(2, 4.37114e-07)
 shape = SubResource("RectangleShape2D_4eedc")
 
 [node name="reacao" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.3
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.46

@@ -632,8 +632,6 @@ wait_time = 0.46
 
 [node name="cooldawn" type="Timer" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
