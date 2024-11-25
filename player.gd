@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed:	float = 200.0
+var speed:	float = 250.0
 var life:	float = 300.0
 var seconds = 0
 var animationMovment = "andando"
