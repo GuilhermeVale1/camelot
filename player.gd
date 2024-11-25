@@ -37,10 +37,11 @@ func drop_equipped_weapon(weapon_name):
 		dropped_weapon.rotation = randf_range(0, 2 * PI)
 
 func _physics_process(delta):
+	print(mortes)
 	
 	if(mortes == mapFases[locale]):
 		
-		GameMananger.destroiParede(locale)
+		GameMananger.destroiParede()
 	if !life:
 		return 
 	# Reinicia a velocidade a cada frame
@@ -154,7 +155,6 @@ func _on_hitbox_body_entered(body):
 		if body.has_method("AreaGolpe"):
 			body.AreaGolpe(areaHit)
 			
-		
 		if(atack):
 			var nome = GameMananger.verNome()
 			if(nome == "machado" or nome == "martelo"):
@@ -164,6 +164,12 @@ func _on_hitbox_body_entered(body):
 			elif(nome == "semArma"):
 				GameMananger.golpeInimigo($soco)
 			mortes += 1 
+	elif(body.is_in_group("parede") and (mortes >= mapFases[locale]) ):
+		
+		body.queue_free()
+			
+		
+		
 			
 				
 

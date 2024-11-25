@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivivn"]
 size = Vector2(1161, 20)
 
-[node name="paredeInv" type="StaticBody2D"]
+[node name="paredeInv" type="StaticBody2D" groups=["parede"]]
 script = ExtResource("1_qk3r2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -10,5 +10,3 @@ script = ExtResource("1_8ybyp")
 
 [node name="musica" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7xma3")
-
-[connection signal="destroi" from="." to="." method="_on_destroi"]

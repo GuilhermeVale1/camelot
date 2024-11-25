@@ -53,4 +53,4 @@ position = Vector2(-166, -302.5)
 scale = Vector2(5, 5)
 
 [node name="paredeInv" parent="." instance=ExtResource("8_ao6hx")]
-position = Vector2(-157, -436)
+position = Vector2(-114.5, -431.5)
