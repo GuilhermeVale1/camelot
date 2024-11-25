@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://2rq0vn64kduu"
+path="res://.godot/imported/Corte2.wav-755654eb8f8c4bdaf1feae29d3c3643d.sample"
+
+[deps]
+
+source_file="res://sfx/melee sounds/Corte2.wav"
+dest_files=["res://.godot/imported/Corte2.wav-755654eb8f8c4bdaf1feae29d3c3643d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

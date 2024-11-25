@@ -46,7 +46,7 @@ func inimigoMorto():
 	
 	if(areaGolpe and !morto):
 		morto = true
-		animatedSprite.play("morrendo")
+		animatedSprite.play("morto")
 		self.collision_layer = 0  # Remove a camada de colisão
 		self.collision_mask = 0 
 		$morrendo.start()

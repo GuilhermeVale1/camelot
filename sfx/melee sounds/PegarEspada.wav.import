@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c3ou1r46rd0cm"
+path="res://.godot/imported/PegarEspada.wav-be18f3e1369c1f258f775784e4f5484e.sample"
+
+[deps]
+
+source_file="res://sfx/melee sounds/PegarEspada.wav"
+dest_files=["res://.godot/imported/PegarEspada.wav-be18f3e1369c1f258f775784e4f5484e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

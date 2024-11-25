@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed:	float = 280.0
-var life:	float = 300.0
+var life = true
 var seconds = 0
 var animationMovment = "andando"
 var animationStop = "parado"
@@ -35,21 +35,23 @@ func drop_equipped_weapon(weapon_name):
 		dropped_weapon.rotation = randf_range(0, 2 * PI)
 
 func _physics_process(delta):
+	if !life:
+		return 
 	# Reinicia a velocidade a cada frame
 	velocity = Vector2()
 	attack()
 	
 	# Movimentação com o teclado
-	if Input.is_action_pressed("direita"):
+	if Input.is_action_pressed("direita") and life:
 		velocity.x += speed
-	if Input.is_action_pressed("esquerda"):
+	if Input.is_action_pressed("esquerda") and life:
 		velocity.x -= speed
-	if Input.is_action_pressed("cima"):
+	if Input.is_action_pressed("cima") and life:
 		velocity.y -= speed
-	if Input.is_action_pressed("baixo"):
+	if Input.is_action_pressed("baixo") and life:
 		velocity.y += speed
 
-	if Input.is_action_just_pressed("throw"): # Lançar arma com Q
+	if Input.is_action_just_pressed("throw") and life: # Lançar arma com Q
 		if not GameMananger.player_is_armed: return
 		
 		animationMovment	= "andando"
@@ -63,13 +65,13 @@ func _physics_process(delta):
 		player_projectile.direction = Vector2.RIGHT.rotated(rotation).normalized()
 		can_swap_weapons = false
 
-	if Input.is_action_just_pressed("pegarArma"):
+	if Input.is_action_just_pressed("pegarArma") and life:
 		if not GameMananger.collectWeapon(): return
 		
 		var weapon_name = GameMananger.verNome()	
 		animationMovment	= dictArma[weapon_name][0]
 		animationStop		= dictArma[weapon_name][1]
-		
+		$pegarArma.play()
 		if not can_swap_weapons:
 			can_swap_weapons = true
 			return
@@ -94,14 +96,14 @@ func _physics_process(delta):
 
 	look_at(get_global_mouse_position())
 	
-	if (velocity.length() > 0 and !atack ):
+	if (velocity.length() > 0 and !atack ) and life:
 		animatedSprite.play(animationMovment)
 	
-	elif(velocity.x == 0 and velocity.y == 0 and !atack):
+	elif(velocity.x == 0 and velocity.y == 0 and !atack) and life:
 		animatedSprite.play(animationStop)
 
 func attack():
-	if Input.is_action_just_pressed("golpe"):
+	if Input.is_action_just_pressed("golpe") and life:
 		var nome = GameMananger.verNome()
 		
 		if !GameMananger.player_is_armed: nome = "semArma"
@@ -145,5 +147,17 @@ func _on_hitbox_body_exited(body):
 			body.AreaGolpe(areaHit)
 		
 func deadPlayer():
-	queue_free()
+	var quadro_sorteado = randi_range(1, 3)
+	
+	# Exibe o quadro sorteado (lembre-se que os quadros são indexados de 0 a 5, então subtraímos 1)
+	animatedSprite.frame = quadro_sorteado - 1
+	
+	# Toca a animação "morrendo" (essa animação vai ser tocada, mas o quadro mostrado será o sorteado)
+	animatedSprite.play("morrendo1")
+	self.collision_layer = 0  # Remove a camada de colisão
+	self.collision_mask = 0 
+	self.z_index = 0 
+	
+	# Marca a vida como falsa (o jogador morreu)
+	life = false
 	
