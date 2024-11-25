@@ -53,7 +53,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33gmp"]
 
 [node name="inimigo" type="CharacterBody2D" groups=["inimigo"]]
-collision_mask = 3
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_s4wku")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["inimigo"]]
@@ -66,7 +67,7 @@ shape = SubResource("CircleShape2D_a06lp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hi5lt")
-animation = &"golpeMach"
+animation = &"andandoMach"
 
 [node name="hitbox" type="Area2D" parent="."]
 
