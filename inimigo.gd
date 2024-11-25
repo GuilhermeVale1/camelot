@@ -8,8 +8,13 @@ var speed: int
 var player_chace = false
 var player = null
 var areahit = false
-var morto = false 
+var morto = false
+var gambiarra = [false]
+var tenta  = false
+var bala = "qualquer coisa"
+
 var bolAttack = false
+var calc = 0.0
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -76,9 +81,17 @@ func areaHit():
 
 func _physics_process(delta):
 	if(!morto):
+		
+		if bolAttack and animatedSprite.frame == 2:
+			
+			attack()
+		
+		
+				
+		
 		if player_chace:
 			# Movimento para o jogador
-			position += (player.position - position).normalized() * speed * delta
+			position += (player.position - position)/speed
 			
 			# Calculando a direção para o jogador
 			var direction = player.position - position
@@ -86,6 +99,7 @@ func _physics_process(delta):
 			var angle_to_player = direction.angle()
 			# Aplicando a rotação ao inimigo
 			rotation = angle_to_player
+			move_and_slide()
 			
 			if !bolAttack:
 				animatedSprite.play("andando")
@@ -118,18 +132,37 @@ func _on_detection_area_body_exited(body):
 func attack():
 	
 	if areahit:
-		$Timer.start()
 		
-		bolAttack = false
+		
+		
+		
 		GameMananger.golpePlayer()
+	
+	
+		
 	
 	
 
 
 func _on_hitbox_body_entered(body):
+	
 	if(body.is_in_group("jogador")):
-		$reacao.start()
 		areahit = true
+		if !bolAttack and !morto:
+			
+			animatedSprite.play("golpe")
+			bolAttack = true
+			$Timer.start()
+		
+			
+		
+		elif  player_chace and !morto:
+			animatedSprite.play("andando")
+		elif !player_chace and !morto :
+			animatedSprite.play("parado")
+	
+		 # Replace with function body.
+		
 		
 		
 		
@@ -137,31 +170,28 @@ func _on_hitbox_body_entered(body):
 
 
 func _on_hitbox_body_exited(body):
-	areahit = false # Replace with function body.
+	if(body.is_in_group("jogador")):
+		areahit = false
+
 
 
 func _on_reacao_timeout():
-	
-	if !bolAttack and !morto:
-		animatedSprite.play("golpe")
-		bolAttack = true
-		attack()
-	elif  player_chace and !morto:
-		animatedSprite.play("andando")
-	elif !player_chace and !morto :
-		animatedSprite.play("parado")
-		 # Replace with function body.
+	pass
+
 
 
 func _on_timer_timeout():
 	
 	animatedSprite.stop()
+
 	  # Para a animação do AnimationPlayer
 	bolAttack = false
 	if player_chace and !morto:
 		animatedSprite.play("andando")
 	elif !morto:
 		animatedSprite.play("parado")
+	$Timer.stop()
+
 	
 	
 
@@ -169,6 +199,12 @@ func _on_timer_timeout():
 
 
 func _on_morrendo_timeout():
-	self.collision_layer = 0  
-	self.collision_mask = 0
+	self.collision_layer = 0  # Remove a camada de colisão
+	self.collision_mask = 0 
+	
 	animatedSprite.play("morto") # Replace with function body.
+	$morrendo.stop()
+
+
+		
+		 # Replace with function body.

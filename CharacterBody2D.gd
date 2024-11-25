@@ -4,7 +4,7 @@ class_name GuerreiroInimigo extends Inimigo
 
 
 func _init():
-	super._init(1 , "guerreiroInimigo" , 80)
+	super._init(1 , "guerreiroInimigo" , 30)
 	
 	
 	

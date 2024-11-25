@@ -103,6 +103,7 @@ animations = [{
 }]
 
 [node name="reticulo" type="Node2D"]
+z_index = 10
 scale = Vector2(2, 2)
 script = ExtResource("1_fi4uc")
 
