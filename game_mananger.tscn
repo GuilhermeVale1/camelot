@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://kap6t6eqbfpm"]
+[gd_scene load_steps=4 format=3 uid="uid://kap6t6eqbfpm"]
 
 [ext_resource type="Script" path="res://game_mananger.gd" id="1_8ybyp"]
 [ext_resource type="AudioStream" uid="uid://blmut6re6agl0" path="res://sfx/melee sounds/Corte1.wav" id="2_7xma3"]
+[ext_resource type="PackedScene" uid="uid://djiaxhso7vnnq" path="res://position_map.tscn" id="3_tlphx"]
 
 [node name="game_mananger" type="Node2D"]
 script = ExtResource("1_8ybyp")
@@ -10,3 +11,5 @@ script = ExtResource("1_8ybyp")
 
 [node name="musica" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7xma3")
+
+[node name="positionMap" parent="." instance=ExtResource("3_tlphx")]

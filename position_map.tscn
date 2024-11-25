@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://djiaxhso7vnnq"]
+
+[node name="positionMap" type="Marker2D" groups=["teleport"]]

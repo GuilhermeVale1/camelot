@@ -8,6 +8,7 @@ signal destroiparede
 var player_is_armed: bool = false
 var previous_weapon_name: String
 
+
 var nameArma: String 
 var idArma 
 var armaColetada = "semArma"

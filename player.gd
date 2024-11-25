@@ -195,3 +195,6 @@ func deadPlayer():
 	# Marca a vida como falsa (o jogador morreu)
 	life = false
 	
+func mudLocale():
+	locale += 1 
+	
