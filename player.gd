@@ -37,7 +37,10 @@ func drop_equipped_weapon(weapon_name):
 		dropped_weapon.rotation = randf_range(0, 2 * PI)
 
 func _physics_process(delta):
-	print(mortes)
+	
+	if(mortes == mapFases[locale]):
+		
+		GameMananger.destroiParede(locale)
 	if !life:
 		return 
 	# Reinicia a velocidade a cada frame
@@ -127,6 +130,8 @@ func attack():
 					GameMananger.golpeInimigo($golpeMachs)
 				elif(nome == "espada"):
 					GameMananger.golpeInimigo($golpeEsp)
+				elif(nome == "semArma"):
+					GameMananger.golpeInimigo($soco)
 				mortes += 1
 				
 				
@@ -156,6 +161,8 @@ func _on_hitbox_body_entered(body):
 				GameMananger.golpeInimigo($golpeMachs)
 			elif(nome == "espada"):
 				GameMananger.golpeInimigo($golpeEsp)
+			elif(nome == "semArma"):
+				GameMananger.golpeInimigo($soco)
 			mortes += 1 
 			
 				

@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://n5tif21uvnb0"]
+[gd_scene load_steps=95 format=3 uid="uid://n5tif21uvnb0"]
 
 [ext_resource type="Texture2D" uid="uid://c31c46ydl6n1n" path="res://assets/01-walk/sprPWalkUnarmed2_strip8.png" id="1_3d1yx"]
 [ext_resource type="Script" path="res://player.gd" id="1_o2e8q"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://g2t56gkwwk7o" path="res://sfx/melee sounds/Swing3.wav" id="15_15o00"]
 [ext_resource type="AudioStream" uid="uid://bqat65hen5eiv" path="res://sfx/melee sounds/Hit1.wav" id="16_prj4d"]
 [ext_resource type="PackedScene" uid="uid://bjsujyhyar0xc" path="res://musica1.tscn" id="17_3dhwo"]
+[ext_resource type="AudioStream" uid="uid://c74uqrafc4bwp" path="res://sfx/melee sounds/Soco.wav" id="18_j6w0x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2n8u"]
 atlas = ExtResource("1_3d1yx")
@@ -658,6 +659,9 @@ stream = ExtResource("15_15o00")
 stream = ExtResource("16_prj4d")
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("17_3dhwo")]
+
+[node name="soco" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_j6w0x")
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
