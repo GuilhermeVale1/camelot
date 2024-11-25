@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://n5tif21uvnb0"]
+[gd_scene load_steps=94 format=3 uid="uid://n5tif21uvnb0"]
 
 [ext_resource type="Texture2D" uid="uid://c31c46ydl6n1n" path="res://assets/01-walk/sprPWalkUnarmed2_strip8.png" id="1_3d1yx"]
 [ext_resource type="Script" path="res://player.gd" id="1_o2e8q"]
@@ -12,6 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://cfds1gsnf0i5x" path="res://assets/02-attack/sprPAttackSword_strip7.png" id="6_n1vnp"]
 [ext_resource type="Texture2D" uid="uid://cek1xanffsg75" path="res://assets/02-attack/sprPAttackSledgeHammer_strip13.png" id="6_udthy"]
 [ext_resource type="AudioStream" uid="uid://c3ou1r46rd0cm" path="res://sfx/melee sounds/PegarEspada.wav" id="12_5isp7"]
+[ext_resource type="AudioStream" uid="uid://d2ax8d38vuyhl" path="res://sfx/melee sounds/Swing2.wav" id="13_3dkg0"]
+[ext_resource type="AudioStream" uid="uid://by8nga8q51556" path="res://sfx/melee sounds/Hit2.wav" id="14_mtj13"]
+[ext_resource type="AudioStream" uid="uid://g2t56gkwwk7o" path="res://sfx/melee sounds/Swing3.wav" id="15_15o00"]
+[ext_resource type="AudioStream" uid="uid://bqat65hen5eiv" path="res://sfx/melee sounds/Hit1.wav" id="16_prj4d"]
+[ext_resource type="PackedScene" uid="uid://bjsujyhyar0xc" path="res://musica1.tscn" id="17_3dhwo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2n8u"]
 atlas = ExtResource("1_3d1yx")
@@ -639,6 +644,20 @@ wait_time = 0.46
 
 [node name="pegarArma" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_5isp7")
+
+[node name="Machs" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_3dkg0")
+
+[node name="golpeMachs" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_mtj13")
+
+[node name="Esp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_15o00")
+
+[node name="golpeEsp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_prj4d")
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("17_3dhwo")]
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]

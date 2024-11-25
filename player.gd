@@ -7,6 +7,9 @@ var animationMovment = "andando"
 var animationStop = "parado"
 var atack = false
 var areaHit = false
+var locale = 0
+var mortes = 0
+var mapFases = [4 , 10]
 var dictArma = {
 	"machado":	["andandoMach",	"paradoMach",	"golpeMach"], 
 	"martelo":	["andandoMat",	"paradoMat",	"golpeMat"], 
@@ -22,7 +25,6 @@ var can_swap_weapons: bool = false
 func _ready():
 	projectile_scene = preload("res://PlayerProjectile.tscn")
 	GameMananger.danoPlayer.connect(deadPlayer)		
-	
 
 func _process(delta):
 	pass
@@ -35,6 +37,7 @@ func drop_equipped_weapon(weapon_name):
 		dropped_weapon.rotation = randf_range(0, 2 * PI)
 
 func _physics_process(delta):
+	print(mortes)
 	if !life:
 		return 
 	# Reinicia a velocidade a cada frame
@@ -107,6 +110,11 @@ func attack():
 		var nome = GameMananger.verNome()
 		
 		if !GameMananger.player_is_armed: nome = "semArma"
+		if(nome == "machado" or nome == "martelo"):
+			$Machs.play()
+		elif(nome  == "espada"):
+			$Esp.play()
+		
 		
 		if !atack:
 			atack = true
@@ -114,8 +122,14 @@ func attack():
 				
 			$deal_attack.start()
 			if(areaHit):
-				GameMananger.golpeInimigo()
-				print("aqui")
+				
+				if(nome == "machado" or nome == "martelo"):
+					GameMananger.golpeInimigo($golpeMachs)
+				elif(nome == "espada"):
+					GameMananger.golpeInimigo($golpeEsp)
+				mortes += 1
+				
+				
 				
 	
 func _on_hitbox_area_entered(area):
@@ -137,7 +151,14 @@ func _on_hitbox_body_entered(body):
 			
 		
 		if(atack):
-			GameMananger.golpeInimigo()
+			var nome = GameMananger.verNome()
+			if(nome == "machado" or nome == "martelo"):
+				GameMananger.golpeInimigo($golpeMachs)
+			elif(nome == "espada"):
+				GameMananger.golpeInimigo($golpeEsp)
+			mortes += 1 
+			
+				
 
 
 func _on_hitbox_body_exited(body):

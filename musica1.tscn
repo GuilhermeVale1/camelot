@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjsujyhyar0xc"]
+
+[ext_resource type="AudioStream" uid="uid://c2mvswxeoexm1" path="res://sfx/musicas/DanceWithTheDead/001.mp3" id="1_gb08l"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_gb08l")
+autoplay = true
