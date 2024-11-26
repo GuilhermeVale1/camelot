@@ -41,6 +41,13 @@ func _init(id : int , nome: String , speed:int ):
 
 func _ready():
 	GameMananger.danoInimigo.connect(inimigoMorto)	
+func lancamentoDeArma():
+	morto = true
+	animatedSprite.play("morto")
+	self.collision_layer = 0  # Remove a camada de colisão
+	self.collision_mask = 0 
+	$morrendo.start()
+	print("arma acertou")
 
 func inimigoMorto():
 	
