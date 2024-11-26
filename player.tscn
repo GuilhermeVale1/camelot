@@ -1,8 +1,7 @@
-[gd_scene load_steps=95 format=3 uid="uid://n5tif21uvnb0"]
+[gd_scene load_steps=93 format=3 uid="uid://n5tif21uvnb0"]
 
 [ext_resource type="Texture2D" uid="uid://c31c46ydl6n1n" path="res://assets/01-walk/sprPWalkUnarmed2_strip8.png" id="1_3d1yx"]
 [ext_resource type="Script" path="res://player.gd" id="1_o2e8q"]
-[ext_resource type="Texture2D" uid="uid://6q24m4anvww1" path="res://assets/03-death/sprPBackCut_strip3.png" id="2_7b72u"]
 [ext_resource type="Texture2D" uid="uid://bl6ovuagjbjma" path="res://assets/03-death/sprPBackBlunt2_strip5.png" id="3_4mmk3"]
 [ext_resource type="Texture2D" uid="uid://cao1e6gwhfj0v" path="res://assets/01-walk/sprPWalkAxe_strip8.png" id="3_iqdxn"]
 [ext_resource type="Texture2D" uid="uid://cec08amqacdny" path="res://assets/01-walk/sprPWalkSword_strip8.png" id="3_vex8e"]
@@ -11,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dtcanqkp736ci" path="res://assets/02-attack/sprPAttackPunch_strip7.png" id="6_ink86"]
 [ext_resource type="Texture2D" uid="uid://cfds1gsnf0i5x" path="res://assets/02-attack/sprPAttackSword_strip7.png" id="6_n1vnp"]
 [ext_resource type="Texture2D" uid="uid://cek1xanffsg75" path="res://assets/02-attack/sprPAttackSledgeHammer_strip13.png" id="6_udthy"]
+[ext_resource type="Texture2D" uid="uid://cb14lamq16gdt" path="res://inimigo/guerreiro_completo/03-death/sprPBackBlunt2_strip5.png" id="10_ysoha"]
 [ext_resource type="AudioStream" uid="uid://c3ou1r46rd0cm" path="res://sfx/melee sounds/PegarEspada.wav" id="12_5isp7"]
 [ext_resource type="AudioStream" uid="uid://d2ax8d38vuyhl" path="res://sfx/melee sounds/Swing2.wav" id="13_3dkg0"]
 [ext_resource type="AudioStream" uid="uid://by8nga8q51556" path="res://sfx/melee sounds/Hit2.wav" id="14_mtj13"]
@@ -267,17 +267,9 @@ region = Rect2(660, 0, 60, 60)
 atlas = ExtResource("6_udthy")
 region = Rect2(720, 0, 60, 60)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_irp4r"]
-atlas = ExtResource("2_7b72u")
-region = Rect2(0, 0, 60, 60)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wwbxv"]
-atlas = ExtResource("2_7b72u")
-region = Rect2(60, 0, 60, 60)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4utca"]
-atlas = ExtResource("2_7b72u")
-region = Rect2(120, 0, 60, 60)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgcp3"]
+atlas = ExtResource("10_ysoha")
+region = Rect2(180, 0, 60, 60)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vpfc"]
 atlas = ExtResource("3_4mmk3")
@@ -541,13 +533,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_irp4r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wwbxv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4utca")
+"texture": SubResource("AtlasTexture_lgcp3")
 }],
 "loop": false,
 "name": &"morrendo1",
@@ -622,7 +608,7 @@ script = ExtResource("1_o2e8q")
 position = Vector2(-1.6, -0.4)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_xrqnv")
-animation = &"golpeEsp"
+animation = &"morrendo1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.9, -0.4)
