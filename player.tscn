@@ -589,7 +589,7 @@ animations = [{
 size = Vector2(2.6, 5.2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bgue"]
-size = Vector2(4.375, 1.4)
+size = Vector2(4.575, 1.4)
 
 [node name="player" type="CharacterBody2D" groups=["jogador"]]
 z_index = 1
@@ -602,7 +602,7 @@ position = Vector2(-1.6, -0.4)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_xrqnv")
 animation = &"golpeMach"
-frame_progress = 0.480731
+frame_progress = 0.450672
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.9, -0.4)
@@ -613,7 +613,7 @@ collision_layer = 5
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" groups=["areaPlayer"]]
-position = Vector2(1.6125, -0.4)
+position = Vector2(1.7125, -0.4)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_0bgue")
 

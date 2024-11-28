@@ -110,6 +110,7 @@ func _physics_process(delta):
 	
 	elif(velocity.x == 0 and velocity.y == 0 and !atack) and life:
 		animatedSprite.play(animationStop)
+	
 	if atack and animatedSprite.frame == dictArma[GameMananger.verNome()][3] and areaHit:
 		var nome = GameMananger.verNome()
 		if(nome == "machado" ):
@@ -118,7 +119,7 @@ func _physics_process(delta):
 			GameMananger.golpeInimigo($golpeEsp)
 		elif(nome == "martelo"):
 			GameMananger.golpeInimigo($golpeMachs)
-		elif(nome == "semArma" and timeAtk):
+		elif(nome == "semArma" ):
 			GameMananger.golpeInimigo($soco)
 		mortes += 1
 		print(mortes)
