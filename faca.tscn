@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2lwi5ttd6sov"]
+
+[ext_resource type="Script" path="res://faca.gd" id="1_k534b"]
+[ext_resource type="Texture2D" uid="uid://dyqf868syv5mc" path="res://inimigo/guerreiro_completo/armas/sprBrokenSmallSword.png" id="2_rr1qn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8fej"]
+size = Vector2(57, 27)
+
+[node name="faca" type="Area2D"]
+script = ExtResource("1_k534b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_rr1qn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -6)
+shape = SubResource("RectangleShape2D_w8fej")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -7,14 +7,17 @@ var animationMovment = "andando"
 var animationStop = "parado"
 var atack = false
 var areaHit = false
+var timeAtk = false
+var toca = false
 var locale = 0
 var mortes = 0
 var mapFases = [4 , 10]
 var dictArma = {
-	"machado":	["andandoMach",	"paradoMach",	"golpeMach"], 
-	"martelo":	["andandoMat",	"paradoMat",	"golpeMat"], 
-	"espada":	["andandoEsp",	"paradoEsp",	"golpeEsp"], 
-	"semArma":	["andando",		"parado",		"golpe"]
+	"machado":	["andandoMach",	"paradoMach",	"golpeMach" , 4],
+	"martelo":	["andandoMat",	"paradoMat",	"golpeMat" , 7],
+	"espada":	["andandoEsp",	"paradoEsp",	"golpeEsp" ,4 ],
+	"faca": 	["andandoFac" , "paradoFac", "golpeFac", 3],
+	"semArma":	["andando",		"parado",		"golpe" , 4]
 }
 
 var projectile_scene: PackedScene
@@ -24,26 +27,26 @@ var can_swap_weapons: bool = false
 
 func _ready():
 	projectile_scene = preload("res://PlayerProjectile.tscn")
-	GameMananger.danoPlayer.connect(deadPlayer)		
+	GameMananger.danoPlayer.connect(deadPlayer)
 
 func _process(delta):
 	pass
 
 func drop_equipped_weapon(weapon_name):
-		var dropped_weapon = load("res://" + weapon_name + ".tscn").instantiate() as Node2D
-		get_tree().current_scene.add_child(dropped_weapon)
+	var dropped_weapon = load("res://" + weapon_name + ".tscn").instantiate() as Node2D
+	get_tree().current_scene.add_child(dropped_weapon)
 		
-		dropped_weapon.position = position
-		dropped_weapon.rotation = randf_range(0, 2 * PI)
+	dropped_weapon.position = position
+	dropped_weapon.rotation = randf_range(0, 2 * PI)
 
 func _physics_process(delta):
-	print(mortes)
+
 	
 	if(mortes == mapFases[locale]):
 		
 		GameMananger.destroiParede()
 	if !life:
-		return 
+		return
 	# Reinicia a velocidade a cada frame
 	velocity = Vector2()
 	attack()
@@ -75,7 +78,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("pegarArma") and life:
 		if not GameMananger.collectWeapon(): return
 		
-		var weapon_name = GameMananger.verNome()	
+		var weapon_name = GameMananger.verNome()
 		animationMovment	= dictArma[weapon_name][0]
 		animationStop		= dictArma[weapon_name][1]
 		$pegarArma.play()
@@ -108,12 +111,29 @@ func _physics_process(delta):
 	
 	elif(velocity.x == 0 and velocity.y == 0 and !atack) and life:
 		animatedSprite.play(animationStop)
+	
+	if atack and animatedSprite.frame == dictArma[GameMananger.verNome()][3] and areaHit:
+		var nome = GameMananger.verNome()
+		if(nome == "machado" ):
+			GameMananger.golpeInimigo($golpeMachs)
+		elif(nome == "espada" ):
+			GameMananger.golpeInimigo($golpeEsp)
+		elif(nome == "martelo"):
+			GameMananger.golpeInimigo($golpeMachs)
+		elif(nome == "semArma" ):
+			GameMananger.golpeInimigo($soco)
+		mortes += 1
+		print(mortes)
+	
+		
 
 func attack():
 	if Input.is_action_just_pressed("golpe") and life:
 		var nome = GameMananger.verNome()
 		
-		if !GameMananger.player_is_armed: nome = "semArma"
+		if !GameMananger.player_is_armed:
+			nome = "semArma"
+			GameMananger.desarma()
 		if(nome == "machado" or nome == "martelo"):
 			$Machs.play()
 		elif(nome  == "espada"):
@@ -123,17 +143,30 @@ func attack():
 		if !atack:
 			atack = true
 			animatedSprite.play(dictArma[nome][2])
+			var frame_golpe = dictArma[nome][3]
+			
 				
 			$deal_attack.start()
+			
+				
+				
+				
 			if(areaHit):
 				
-				if(nome == "machado" or nome == "martelo"):
+				if(nome == "machado" and timeAtk):
 					GameMananger.golpeInimigo($golpeMachs)
-				elif(nome == "espada"):
+					
+				
+				elif(nome == "espada" and timeAtk  ):
 					GameMananger.golpeInimigo($golpeEsp)
-				elif(nome == "semArma"):
+				
+				elif(nome == "martelo" and timeAtk ):
+					GameMananger.golpeInimigo($golpeMachs)
+					
+				elif(nome == "semArma" and timeAtk):
 					GameMananger.golpeInimigo($soco)
-				mortes += 1
+					
+				
 				
 				
 				
@@ -157,13 +190,20 @@ func _on_hitbox_body_entered(body):
 			
 		if(atack):
 			var nome = GameMananger.verNome()
-			if(nome == "machado" or nome == "martelo"):
+			
+			if(nome == "machado" and timeAtk ):
 				GameMananger.golpeInimigo($golpeMachs)
-			elif(nome == "espada"):
+				
+			elif(nome == "espada" and timeAtk):
 				GameMananger.golpeInimigo($golpeEsp)
-			elif(nome == "semArma"):
+				
+			elif(nome == "martelo" and timeAtk ):
+				GameMananger.golpeInimigo($golpeMachs)
+				
+			elif(nome == "semArma" and timeAtk):
 				GameMananger.golpeInimigo($soco)
-			mortes += 1 
+				
+		
 	elif(body.is_in_group("parede") and (mortes >= mapFases[locale]) ):
 		
 		body.queue_free()
@@ -189,12 +229,16 @@ func deadPlayer():
 	# Toca a animação "morrendo" (essa animação vai ser tocada, mas o quadro mostrado será o sorteado)
 	animatedSprite.play("morrendo1")
 	self.collision_layer = 0  # Remove a camada de colisão
-	self.collision_mask = 0 
-	self.z_index = 0 
+	self.collision_mask = 0
+	self.z_index = 0
 	
 	# Marca a vida como falsa (o jogador morreu)
 	life = false
 	
 func mudLocale():
-	locale += 1 
+	locale += 1
+	
+
+
+
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bp1jc8yepup4j"]
+[gd_scene load_steps=12 format=3 uid="uid://bp1jc8yepup4j"]
 
 [ext_resource type="PackedScene" uid="uid://n5tif21uvnb0" path="res://player.tscn" id="1_c0mla"]
 [ext_resource type="PackedScene" uid="uid://yku6dd2eo6w5" path="res://machado.tscn" id="2_c0k8l"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d2lvsv1r0r8hy" path="res://parede_inv.tscn" id="8_ao6hx"]
 [ext_resource type="PackedScene" uid="uid://djiaxhso7vnnq" path="res://position_map.tscn" id="9_auqp6"]
 [ext_resource type="PackedScene" uid="uid://bfr56vy4p00jo" path="res://teleport.tscn" id="10_fcky4"]
+[ext_resource type="PackedScene" uid="uid://c2lwi5ttd6sov" path="res://faca.tscn" id="11_xnh7b"]
 
 [node name="main" type="Node2D"]
 position = Vector2(0, 1)
@@ -62,3 +63,6 @@ position = Vector2(512, -1025.5)
 
 [node name="Teleport" parent="." instance=ExtResource("10_fcky4")]
 position = Vector2(17.5, -455)
+
+[node name="faca" parent="." instance=ExtResource("11_xnh7b")]
+position = Vector2(34, 33.5)
