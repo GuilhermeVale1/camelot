@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://n5tif21uvnb0"]
+[gd_scene load_steps=92 format=3 uid="uid://n5tif21uvnb0"]
 
 [ext_resource type="Texture2D" uid="uid://c31c46ydl6n1n" path="res://assets/01-walk/sprPWalkUnarmed2_strip8.png" id="1_3d1yx"]
 [ext_resource type="Script" path="res://player.gd" id="1_o2e8q"]
@@ -166,10 +166,6 @@ region = Rect2(210, 0, 42, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6yv6"]
 atlas = ExtResource("6_ink86")
 region = Rect2(252, 0, 42, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p5ach"]
-atlas = ExtResource("6_n1vnp")
-region = Rect2(0, 0, 58, 60)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ly2la"]
 atlas = ExtResource("6_n1vnp")
@@ -443,9 +439,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p5ach")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ly2la")
 }, {
 "duration": 1.0,
@@ -596,7 +589,7 @@ animations = [{
 size = Vector2(2.6, 5.2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bgue"]
-size = Vector2(3.9, 5.2)
+size = Vector2(4.375, 1.4)
 
 [node name="player" type="CharacterBody2D" groups=["jogador"]]
 z_index = 1
@@ -608,8 +601,8 @@ script = ExtResource("1_o2e8q")
 position = Vector2(-1.6, -0.4)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_xrqnv")
-animation = &"golpe"
-frame_progress = 0.828432
+animation = &"golpeMach"
+frame_progress = 0.480731
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.9, -0.4)
@@ -620,7 +613,8 @@ collision_layer = 5
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" groups=["areaPlayer"]]
-position = Vector2(1.45, -0.4)
+position = Vector2(1.6125, -0.4)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_0bgue")
 
 [node name="deal_attack" type="Timer" parent="."]
@@ -650,6 +644,7 @@ stream = ExtResource("16_prj4d")
 [node name="soco" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_j6w0x")
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

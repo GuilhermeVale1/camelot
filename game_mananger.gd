@@ -17,7 +17,9 @@ var armaColetada = "semArma"
 
 
 var shapeWeapon: bool = false
-
+func desarma():
+	armaColetada = "semArma"
+	
 func _ready():
 	pass
 

@@ -9,9 +9,9 @@ var player_chace = false
 var player = null
 var areahit = false
 var morto = false
-var gambiarra = [false]
+
 var tenta  = false
-var bala = "qualquer coisa"
+
 
 var bolAttack = false
 var calc = 0.0
@@ -40,7 +40,8 @@ func _init(id : int , nome: String , speed:int ):
 	
 
 func _ready():
-	GameMananger.danoInimigo.connect(inimigoMorto)	
+	GameMananger.danoInimigo.connect(inimigoMorto)
+	
 func lancamentoDeArma():
 	morto = true
 	animatedSprite.play("morto")
@@ -90,6 +91,8 @@ func areaHit():
 
 func _physics_process(delta):
 	if(!morto):
+		
+	
 		
 		if bolAttack and animatedSprite.frame == 2:
 			
@@ -192,7 +195,7 @@ func _on_reacao_timeout():
 func _on_timer_timeout():
 	
 	animatedSprite.stop()
-
+	
 	  # Para a animação do AnimationPlayer
 	bolAttack = false
 	if player_chace and !morto:
@@ -217,3 +220,18 @@ func _on_morrendo_timeout():
 
 		
 		 # Replace with function body.
+
+
+func _on_tentativ_area_body_entered(body):
+	if(body.is_in_group("jogador")):
+		if !bolAttack and !morto:
+				
+				animatedSprite.play("golpe")
+				bolAttack = true
+				$Timer.start()
+				
+	 		
+
+
+func _on_tentativ_area_body_exited(body):
+	pass # Replace with function body.
