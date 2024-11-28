@@ -223,13 +223,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8owt"]
-size = Vector2(3, 6)
+size = Vector2(1.5, 6)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_egamf"]
 radius = 18.1108
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4eedc"]
-size = Vector2(4, 6)
+size = Vector2(4.5, 6)
 
 [node name="guerreiroInimigo" type="CharacterBody2D" groups=["inimigo"]]
 texture_filter = 1
@@ -240,12 +240,14 @@ script = ExtResource("1_61x2s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(0.2, 0.2)
+position = Vector2(-0.019688, 0)
+scale = Vector2(0.199344, 0.2)
 sprite_frames = SubResource("SpriteFrames_5aste")
-animation = &"morrendo"
+animation = &"golpe"
+frame_progress = 0.088822
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["inimigo"]]
-position = Vector2(-0.5, 0)
+position = Vector2(-0.25, 0)
 shape = SubResource("RectangleShape2D_a8owt")
 
 [node name="detectionArea" type="Area2D" parent="."]
@@ -258,7 +260,7 @@ shape = SubResource("CircleShape2D_egamf")
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(2, 4.37114e-07)
+position = Vector2(1.75, 1.33991e-05)
 shape = SubResource("RectangleShape2D_4eedc")
 
 [node name="reacao" type="Timer" parent="."]

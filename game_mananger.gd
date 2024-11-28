@@ -3,6 +3,7 @@ extends Node2D
 signal coletarArma
 signal danoInimigo
 signal danoPlayer
+signal lancamentoDeArma
 signal destroiparede
 
 var player_is_armed: bool = false
@@ -16,7 +17,9 @@ var armaColetada = "semArma"
 
 
 var shapeWeapon: bool = false
-
+func desarma():
+	armaColetada = "semArma"
+	
 func _ready():
 	pass
 
@@ -42,9 +45,12 @@ func foraArma():
 	nameArma = "semArma"
 
 func golpeInimigo(dandoArmaSound):
-	audio = dandoArmaSound
-	audio.play()
+	if(dandoArmaSound != null):
+		audio = dandoArmaSound
+		audio.play()
 	emit_signal("danoInimigo")
+	
+
 	
 func golpePlayer():
 	emit_signal("danoPlayer")

@@ -44,4 +44,7 @@ func projectile_stopped() -> void:
 	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
+	if(body.is_in_group("inimigo")):
+		if(body.has_method("lancamentoDeArma")):
+			body.lancamentoDeArma()
 	projectile_stopped()
