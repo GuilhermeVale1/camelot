@@ -73,7 +73,7 @@ func inimigoMorto():
 func move_in_opposite_direction(direction: Vector2):
 	# Mover o inimigo na direção oposta por um tempo (ajuste conforme necessário)
 	var move_speed = 30  # Ajuste a velocidade do movimento (dependendo da sua necessidade)
-	var move_duration = 1.0  # O tempo que ele vai se mover na direção oposta (ajuste conforme necessário)
+	var move_duration = 3.0  # O tempo que ele vai se mover na direção oposta (ajuste conforme necessário)
 
 	# Um simples movimento contínuo para a direção oposta
 	var movement = direction * move_speed * $morrendo.wait_time
@@ -81,6 +81,7 @@ func move_in_opposite_direction(direction: Vector2):
 
 	# Realizar o movimento (pode usar `position += movement` ou `move_and_slide()` se for necessário)
 	position += movement
+	move_and_slide()
 
 func AreaGolpe(aGolpe):
 	areaGolpe = aGolpe

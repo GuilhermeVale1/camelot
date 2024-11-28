@@ -16,6 +16,7 @@ var dictArma = {
 	"machado":	["andandoMach",	"paradoMach",	"golpeMach" , 4],
 	"martelo":	["andandoMat",	"paradoMat",	"golpeMat" , 7],
 	"espada":	["andandoEsp",	"paradoEsp",	"golpeEsp" ,4 ],
+	"faca": 	["andandoFac" , "paradoFac", "golpeFac", 3],
 	"semArma":	["andando",		"parado",		"golpe" , 4]
 }
 
