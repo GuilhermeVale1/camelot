@@ -1,4 +1,4 @@
-class_name Machado 
+class_name Machado
 extends Arma
 
 func _init():

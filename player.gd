@@ -16,7 +16,9 @@ var dictArma = {
 	"machado":	["andandoMach",	"paradoMach",	"golpeMach" , 4],
 	"martelo":	["andandoMat",	"paradoMat",	"golpeMat" , 7],
 	"espada":	["andandoEsp",	"paradoEsp",	"golpeEsp" ,4 ],
-	"faca": 	["andandoFac" , "paradoFac", "golpeFac", 3],
+	"faca": 	["andandoFac" , "paradoFac", "golpeFac", 2],
+	"sMartelo":	["andandoSMat", "paradpSMat", "golpeSMat" , 6],
+	"smallSmace": ["andandoSmSmace" , "paradoSmSmace", "golpeSmSmace" , 6 ],
 	"semArma":	["andando",		"parado",		"golpe" , 4]
 }
 
@@ -82,9 +84,11 @@ func _physics_process(delta):
 		animationMovment	= dictArma[weapon_name][0]
 		animationStop		= dictArma[weapon_name][1]
 		$pegarArma.play()
-		if not can_swap_weapons:
+		if not can_swap_weapons and GameMananger.verNome() != "semArma" :
 			can_swap_weapons = true
 			return
+		
+			
 		
 		drop_equipped_weapon(GameMananger.previous_weapon_name)
 		
@@ -122,6 +126,13 @@ func _physics_process(delta):
 			GameMananger.golpeInimigo($golpeMachs)
 		elif(nome == "semArma" ):
 			GameMananger.golpeInimigo($soco)
+		elif(nome == "faca" ):
+			GameMananger.golpeInimigo($golpeEsp)
+		elif(nome == "sMartelo"):
+			GameMananger.golpeInimigo($golpeMachs)
+		elif(nome == "smallSmace"):
+			GameMananger.golpeInimigo($golpeMachs)
+		
 		mortes += 1
 		print(mortes)
 	
@@ -132,12 +143,9 @@ func attack():
 		var nome = GameMananger.verNome()
 		
 		if !GameMananger.player_is_armed:
-			nome = "semArma"
+			
 			GameMananger.desarma()
-		if(nome == "machado" or nome == "martelo"):
-			$Machs.play()
-		elif(nome  == "espada"):
-			$Esp.play()
+		
 		
 		
 		if !atack:
@@ -151,20 +159,7 @@ func attack():
 				
 				
 				
-			if(areaHit):
-				
-				if(nome == "machado" and timeAtk):
-					GameMananger.golpeInimigo($golpeMachs)
-					
-				
-				elif(nome == "espada" and timeAtk  ):
-					GameMananger.golpeInimigo($golpeEsp)
-				
-				elif(nome == "martelo" and timeAtk ):
-					GameMananger.golpeInimigo($golpeMachs)
-					
-				elif(nome == "semArma" and timeAtk):
-					GameMananger.golpeInimigo($soco)
+			
 					
 				
 				

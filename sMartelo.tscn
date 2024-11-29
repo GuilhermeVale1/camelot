@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4sfjotyu6c5a"]
+
+[ext_resource type="Script" path="res://Area2D.gd" id="1_5xywk"]
+[ext_resource type="Texture2D" uid="uid://dxwce84pt4mnu" path="res://inimigo/guerreiro_completo/armas/sprSmallHammer.png" id="2_s561n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lx13y"]
+size = Vector2(57, 27)
+
+[node name="sMartelo" type="Area2D"]
+position = Vector2(2, 5)
+script = ExtResource("1_5xywk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_s561n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -5)
+shape = SubResource("RectangleShape2D_lx13y")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
