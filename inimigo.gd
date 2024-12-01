@@ -2,13 +2,26 @@ class_name Inimigo
 
 extends CharacterBody2D
 
-var animationStop = "parado"
-var animationMovment = "andando"
-var speed: int 
+var animationStop = "paradoFac"
+var animationMovment = "andandoFac"
+var arma = "faca"
+var speed: int
 var player_chace = false
 var player = null
+var positionArma = null
 var areahit = false
 var morto = false
+var armaArea = false
+var dictArma = {
+	"machado":	["andandoMach",	"paradoMach",	"golpeMach" , 4],
+	"martelo":	["andandoMat",	"paradoMat",	"golpeMat" , 7],
+	"espada":	["andandoEsp",	"paradoEsp",	"golpeEsp" ,6 ],
+	"faca": 	["andandoFac" , "paradoFac", "golpeFac", 2],
+	"sMartelo":	["andandoSMat", "paradpSMat", "golpeSMat" , 6],
+	"smallSmace": ["andandoSmSmace" , "paradoSmSmace", "golpeSmSmace" , 6 ],
+	"semArma":	["andando",		"parado",		"golpe" , 4]
+}
+
 
 var tenta  = false
 
@@ -18,12 +31,6 @@ var calc = 0.0
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
-var dictArma = {
-	"machado":	["andandoMach",	"paradoMach",	"golpeMach"], 
-	"martelo":	["andandoMat",	"paradoMat",	"golpeMat"], 
-	"espada":	["andandoEsp",	"paradoEsp",	"golpeEsp"], 
-	"semArma":	["andando",		"parado",		"golpe"]
-}
 
 
 	
@@ -41,12 +48,18 @@ func _init(id : int , nome: String , speed:int ):
 
 func _ready():
 	GameMananger.danoInimigo.connect(inimigoMorto)
+
+func detectArma(position , boolArma):
+	positionArma = position
+	armaArea = boolArma
+	
 	
 func lancamentoDeArma():
 	morto = true
 	animatedSprite.play("morto")
 	self.collision_layer = 0  # Remove a camada de colisão
-	self.collision_mask = 0 
+	self.collision_mask = 0
+	self.z_index = 0
 	$morrendo.start()
 	print("arma acertou")
 
@@ -56,7 +69,8 @@ func inimigoMorto():
 		morto = true
 		animatedSprite.play("morto")
 		self.collision_layer = 0  # Remove a camada de colisão
-		self.collision_mask = 0 
+		self.collision_mask = 0
+		self.z_index = 0
 		$morrendo.start()
 		print("Ele está morrendo")
 		if player:
@@ -100,9 +114,20 @@ func _physics_process(delta):
 			attack()
 		
 		
-				
+		if((arma == "faca" or arma == "semArma") and armaArea):
+			# Garantir que positionArma seja um Vector2
+			var direction = positionArma - position
+			position += direction / speed   # Movimento em direção à arma
+
+			# Calcular o ângulo para a arma
+			var angle_to_weapon = direction.angle()
+			rotation = angle_to_weapon
+			if(!bolAttack):  # Rotacionar o inimigo para a direção da arma
+				animatedSprite.play("andando")
+			move_and_slide()
+			
 		
-		if player_chace:
+		if player_chace and !armaArea:
 			# Movimento para o jogador
 			position += (player.position - position)/speed
 			
@@ -125,22 +150,43 @@ func _physics_process(delta):
 						position += direction * 100 * delta
 		else:
 			
-			if !bolAttack and !morto:# Caso o inimigo não esteja perseguindo, animação de "parado"
+			if !bolAttack and !morto and !armaArea:# Caso o inimigo não esteja perseguindo, animação de "parado"
 				animatedSprite.play("parado")
+func coletaEspada():
+	animationStop = "paradoEsp"
+	animationMovment = "andandoEsp"
+	
 	
 
 func _on_detection_area_body_entered(body):
-		if(body.is_in_group("jogador")):
-			player_chace = true
-			player = body
+	
+	
+	if(body.is_in_group("jogador")):
+		player_chace = true
+		player = body
+	elif(body.is_in_group("espada")):
+	
+		positionArma = body
+		armaArea = true
+		print("entrei aqui")
+	
+	
+		
+	   
+			
+			
 	
 
 
 func _on_detection_area_body_exited(body):
 	if(body.is_in_group("jogador")):
-			player_chace = false
-			player = null
-	print("saiu da zona inimiga")
+		player_chace = false
+		player = null
+	
+	elif(body.is_in_group("arma")):
+		positionArma = null
+		armaArea = false
+		
 	
 func attack():
 	
@@ -213,7 +259,8 @@ func _on_timer_timeout():
 
 func _on_morrendo_timeout():
 	self.collision_layer = 0  # Remove a camada de colisão
-	self.collision_mask = 0 
+	self.collision_mask = 0
+	self.z_index = 0
 	
 	animatedSprite.play("morto") # Replace with function body.
 	$morrendo.stop()
@@ -227,9 +274,9 @@ func _on_tentativ_area_body_entered(body):
 	if(body.is_in_group("jogador")):
 		if !bolAttack and !morto:
 				
-				animatedSprite.play("golpe")
-				bolAttack = true
-				$Timer.start()
+			animatedSprite.play("golpe")
+			bolAttack = true
+			$Timer.start()
 				
 	 		
 

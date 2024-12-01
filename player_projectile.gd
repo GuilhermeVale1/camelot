@@ -16,8 +16,15 @@ func _ready():
 		sprite_name = "Axe"
 	elif	weapon_name == "espada":
 		sprite_name = "Sword"
-	else:
+	elif(weapon_name == "martelo"):
+
 		sprite_name = "Hammer"
+	elif(weapon_name == "faca"):
+		sprite_name = "BrokenSmallSword"
+	elif(weapon_name == "sMartelo"):
+		sprite_name = "SmallHammer"
+	else:
+		sprite_name = "SmallSmace"
 	
 	$Sprite2D.texture = load("res://assets/weapons/spr" + sprite_name + ".png")
 	timer = Timer.new()

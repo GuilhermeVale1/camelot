@@ -76,6 +76,7 @@ func _physics_process(delta):
 		player_projectile.position  = position
 		player_projectile.direction = Vector2.RIGHT.rotated(rotation).normalized()
 		can_swap_weapons = false
+		GameMananger.desarma()
 
 	if Input.is_action_just_pressed("pegarArma") and life:
 		if not GameMananger.collectWeapon(): return

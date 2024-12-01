@@ -33,7 +33,7 @@ position = Vector2(95, 68)
 position = Vector2(-273, -324)
 
 [node name="espada" parent="." instance=ExtResource("5_h2rtw")]
-position = Vector2(25, -32)
+position = Vector2(109.5, -81)
 
 [node name="Area2D2" parent="." instance=ExtResource("2_c0k8l")]
 position = Vector2(107, 4)

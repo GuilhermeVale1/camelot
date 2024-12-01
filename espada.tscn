@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4a78s675lmk1"]
 
-[ext_resource type="Texture2D" path="res://assets/weapons/sprSword.png" id="1_ccifm"]
+[ext_resource type="Texture2D" uid="uid://biiwmk8mp8331" path="res://assets/weapons/sprSword.png" id="1_ccifm"]
 [ext_resource type="Script" path="res://espada.gd" id="1_g6me5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2f2w4"]
