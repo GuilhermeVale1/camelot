@@ -26,7 +26,7 @@ func _on_body_entered(body):
 	if(body.is_in_group("jogador")):
 		GameMananger.areaArma(id, self.nome)
 		arma = true
-		
+		print(arma)
 		body.z_index = 1
 	
 func coletaArma(armaId):
@@ -37,3 +37,4 @@ func _on_body_exited(body):
 	if(body.is_in_group("jogador")):
 		GameMananger.foraArma()
 		arma = false
+		print(arma)

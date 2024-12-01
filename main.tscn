@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bfr56vy4p00jo" path="res://teleport.tscn" id="10_fcky4"]
 [ext_resource type="PackedScene" uid="uid://c2lwi5ttd6sov" path="res://faca.tscn" id="11_xnh7b"]
 [ext_resource type="PackedScene" uid="uid://b4sfjotyu6c5a" path="res://sMartelo.tscn" id="12_j67k4"]
-[ext_resource type="PackedScene" uid="uid://bv5y61iuijr0g" path="res://small_smace.tscn" id="13_onkxw"]
+[ext_resource type="PackedScene" uid="uid://bv5y61iuijr0g" path="res://smallSmace.tscn" id="13_onkxw"]
 
 [node name="main" type="Node2D"]
 position = Vector2(0, 1)
