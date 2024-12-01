@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4a78s675lmk1"]
+[gd_scene load_steps=5 format=3 uid="uid://c4a78s675lmk1"]
 
-[ext_resource type="Texture2D" uid="uid://biiwmk8mp8331" path="res://assets/weapons/sprSword.png" id="1_ccifm"]
+[ext_resource type="Texture2D" path="res://assets/weapons/sprSword.png" id="1_ccifm"]
 [ext_resource type="Script" path="res://espada.gd" id="1_g6me5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2f2w4"]
 size = Vector2(57, 27)
 
-[node name="espada" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_dg3n4"]
+radius = 85.0529
+
+[node name="espada" type="Area2D" groups=["arma", "espada"]]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_g6me5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -17,5 +22,12 @@ texture = ExtResource("1_ccifm")
 position = Vector2(2.5, 0.5)
 shape = SubResource("RectangleShape2D_2f2w4")
 
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_dg3n4")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
