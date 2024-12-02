@@ -645,7 +645,7 @@ position = Vector2(-0.019688, 0)
 scale = Vector2(0.199344, 0.2)
 sprite_frames = SubResource("SpriteFrames_5aste")
 animation = &"golpeSmSmace"
-frame_progress = 0.816826
+frame_progress = 0.172747
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["inimigo"]]
 position = Vector2(-0.25, 0)

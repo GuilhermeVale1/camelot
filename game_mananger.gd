@@ -56,4 +56,6 @@ func golpePlayer():
 	emit_signal("danoPlayer")
 func destroiParede():
 	emit_signal("destroiparede")
+func reniciaCena():
+	get_tree().reload_current_scene()
 	

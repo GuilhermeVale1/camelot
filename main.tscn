@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bp1jc8yepup4j"]
+[gd_scene load_steps=13 format=3 uid="uid://bp1jc8yepup4j"]
 
 [ext_resource type="PackedScene" uid="uid://n5tif21uvnb0" path="res://player.tscn" id="1_c0mla"]
 [ext_resource type="PackedScene" uid="uid://yku6dd2eo6w5" path="res://machado.tscn" id="2_c0k8l"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://d2lvsv1r0r8hy" path="res://parede_inv.tscn" id="8_ao6hx"]
 [ext_resource type="PackedScene" uid="uid://djiaxhso7vnnq" path="res://position_map.tscn" id="9_auqp6"]
 [ext_resource type="PackedScene" uid="uid://bfr56vy4p00jo" path="res://teleport.tscn" id="10_fcky4"]
-[ext_resource type="PackedScene" uid="uid://c2lwi5ttd6sov" path="res://faca.tscn" id="11_xnh7b"]
 [ext_resource type="PackedScene" uid="uid://b4sfjotyu6c5a" path="res://sMartelo.tscn" id="12_j67k4"]
 [ext_resource type="PackedScene" uid="uid://bv5y61iuijr0g" path="res://smallSmace.tscn" id="13_onkxw"]
 
@@ -33,10 +32,10 @@ position = Vector2(95, 68)
 position = Vector2(-273, -324)
 
 [node name="espada" parent="." instance=ExtResource("5_h2rtw")]
-position = Vector2(292.5, -56.5)
+position = Vector2(401.5, -1228.5)
 
 [node name="Area2D2" parent="." instance=ExtResource("2_c0k8l")]
-position = Vector2(107, 4)
+position = Vector2(-118.5, -160)
 
 [node name="guerreiroInimigo" parent="." instance=ExtResource("6_h7nrr")]
 position = Vector2(107, -164.5)
@@ -66,17 +65,34 @@ position = Vector2(512, -1025.5)
 [node name="Teleport" parent="." instance=ExtResource("10_fcky4")]
 position = Vector2(17.5, -455)
 
-[node name="faca" parent="." instance=ExtResource("11_xnh7b")]
-position = Vector2(34, 33.5)
-
 [node name="sMarreta" parent="." instance=ExtResource("12_j67k4")]
 position = Vector2(120.5, -229.5)
 
 [node name="SmallSmace" parent="." instance=ExtResource("13_onkxw")]
-position = Vector2(118.5, -125)
+position = Vector2(-109, -333.5)
 
 [node name="espada2" parent="." instance=ExtResource("5_h2rtw")]
-position = Vector2(12, -15)
+position = Vector2(581, -1098)
 
 [node name="paredeInv2" parent="." instance=ExtResource("8_ao6hx")]
 position = Vector2(-251.5, -1498.5)
+
+[node name="guerreiroInimigo5" parent="." instance=ExtResource("6_h7nrr")]
+position = Vector2(275, -1255.5)
+scale = Vector2(5, 5)
+
+[node name="guerreiroInimigo6" parent="." instance=ExtResource("6_h7nrr")]
+position = Vector2(498, -1385.5)
+scale = Vector2(5, 5)
+
+[node name="guerreiroInimigo7" parent="." instance=ExtResource("6_h7nrr")]
+position = Vector2(626.5, -1098)
+scale = Vector2(5, 5)
+
+[node name="guerreiroInimigo8" parent="." instance=ExtResource("6_h7nrr")]
+position = Vector2(267, -1405)
+scale = Vector2(5, 5)
+
+[node name="guerreiroInimigo9" parent="." instance=ExtResource("6_h7nrr")]
+position = Vector2(584, -1258.5)
+scale = Vector2(5, 5)

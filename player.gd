@@ -43,12 +43,13 @@ func drop_equipped_weapon(weapon_name):
 
 func _physics_process(delta):
 
-	
+	if(locale > 0 and mortes == 5):
+		GameMananger.reniciaCena()
 	if(mortes == mapFases[locale]):
 		
 		GameMananger.destroiParede()
 	if !life:
-		return
+		GameMananger.reniciaCena()
 	# Reinicia a velocidade a cada frame
 	velocity = Vector2()
 	attack()
@@ -228,6 +229,10 @@ func deadPlayer():
 	
 func mudLocale():
 	locale += 1
+func mortesCont():
+	mortes += 1
+func zeraMortes():
+	mortes = 0
 	
 
 

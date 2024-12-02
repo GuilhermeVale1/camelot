@@ -11,4 +11,5 @@ func _on_body_entered(body):
 			if teleport_markers.size() > 0:
 				# Seleciona o primeiro marcador (ou altere conforme necessário)
 				var target_marker = teleport_markers[0]
+				body.zeraMortes()
 				body.global_position = target_marker.global_position
