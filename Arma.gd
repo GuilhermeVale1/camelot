@@ -34,8 +34,9 @@ func _on_body_entered(body):
 	elif(body.is_in_group("inimigo") ):
 		var VerArma = body.verArma()
 		var collet = body.verCollect()
-		
+		print("inimigo na area")
 		if(body.has_method("coletaArma") and VerArma == "faca" and nome != "faca"):
+			print("olá")
 			body.coletaArma(nome)
 			
 			
@@ -62,6 +63,7 @@ func _on_body_exited(body):
 
 func _on_hitbox_body_entered(body):
 	if(body.is_in_group("inimigo")):
+		
 		if body.has_method("detectArma"):
 			body.detectArma(self.position , true)
 

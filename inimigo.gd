@@ -17,11 +17,11 @@ var morto = false
 var armaArea = false
 var dictArma = {
 	"machado":	["andandoMach",	"paradoMach",	"golpeMach" , 4],
-	"martelo":	["andandoMat",	"paradoMat",	"golpeMat" , 7],
+	"sMartelo":	["andandoMat",	"paradoMat",	"golpeMat" , 5],
 	"espada":	["andandoEsp",	"paradoEsp",	"golpeEsp" ,4 ],
 	
-	"sMartelo":	["andandoSMat", "paradpSMat", "golpeSMat" , 6],
-	"smallSmace": ["andandoSmSmace" , "paradoSmSmace", "golpeSmSmace" , 6 ],
+	
+	"smallSmace": ["andandoSmSmace" , "paradoSmSmace", "golpeSmSmace" , 4 ],
 	"faca":	["andando",		"parado",		"golpe" , 2]
 }
 

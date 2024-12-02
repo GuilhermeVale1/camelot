@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv5y61iuijr0g"]
+[gd_scene load_steps=5 format=3 uid="uid://bv5y61iuijr0g"]
 
 [ext_resource type="Texture2D" uid="uid://c1yhuwyy64mpp" path="res://inimigo/guerreiro_completo/armas/sprSmallSmace.png" id="1_3ssux"]
 [ext_resource type="Script" path="res://small_smace.gd" id="1_130oo"]
@@ -6,9 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xy5b2"]
 size = Vector2(57, 27)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ncjrv"]
+radius = 85.0529
+
 [node name="SmallSmace" type="Area2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 8
+collision_mask = 6
 script = ExtResource("1_130oo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -19,5 +22,14 @@ texture = ExtResource("1_3ssux")
 position = Vector2(-2, -7)
 shape = SubResource("RectangleShape2D_xy5b2")
 
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_ncjrv")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]

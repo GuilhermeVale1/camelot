@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4sfjotyu6c5a"]
+[gd_scene load_steps=5 format=3 uid="uid://b4sfjotyu6c5a"]
 
 [ext_resource type="Script" path="res://Area2D.gd" id="1_5xywk"]
 [ext_resource type="Texture2D" uid="uid://dxwce84pt4mnu" path="res://inimigo/guerreiro_completo/armas/sprSmallHammer.png" id="2_s561n"]
@@ -6,10 +6,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lx13y"]
 size = Vector2(57, 27)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qyhbs"]
+radius = 85.0529
+
 [node name="sMartelo" type="Area2D"]
 position = Vector2(2, 5)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 8
+collision_mask = 6
 script = ExtResource("1_5xywk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,5 +23,14 @@ texture = ExtResource("2_s561n")
 position = Vector2(-2, -5)
 shape = SubResource("RectangleShape2D_lx13y")
 
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_qyhbs")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]

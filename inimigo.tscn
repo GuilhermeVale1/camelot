@@ -73,7 +73,12 @@ animations = [{
 }, {
 "frames": [],
 "loop": true,
-"name": &"andandoMach",
+"name": &"andandoMat",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"andandoSmSmace",
 "speed": 5.0
 }, {
 "frames": [],
@@ -115,8 +120,13 @@ animations = [{
 }, {
 "frames": [],
 "loop": true,
-"name": &"golpeMach",
+"name": &"golpeMat",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"golpeSmSmace",
+"speed": 15.0
 }, {
 "frames": [],
 "loop": true,
@@ -151,7 +161,12 @@ animations = [{
 }, {
 "frames": [],
 "loop": true,
-"name": &"paradoMach",
+"name": &"paradoMat",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"paradoSmSmace",
 "speed": 5.0
 }]
 
@@ -173,7 +188,7 @@ shape = SubResource("CircleShape2D_a06lp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hi5lt")
-animation = &"parado"
+animation = &"paradoSmSmace"
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 10
