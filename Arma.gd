@@ -31,10 +31,17 @@ func _on_body_entered(body):
 		player = true
 		print(arma)
 		body.z_index = 1
-	elif(body.is_in_group("inimigo")):
-		print("inimigo no hitbox da coleta")
+	elif(body.is_in_group("inimigo") ):
+		var VerArma = body.verArma()
+		var collet = body.verCollect()
 		
-		enemy = true
+		if(body.has_method("coletaArma") and VerArma == "faca" and nome != "faca"):
+			body.coletaArma(nome)
+			
+			
+			queue_free()
+		
+		
 		
 		body.z_index = 1
 		

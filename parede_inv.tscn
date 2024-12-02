@@ -6,7 +6,7 @@
 size = Vector2(1161, 20)
 
 [node name="paredeInv" type="StaticBody2D" groups=["parede"]]
-collision_mask = 0
+collision_mask = 2
 script = ExtResource("1_qk3r2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

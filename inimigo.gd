@@ -2,12 +2,15 @@ class_name Inimigo
 
 extends CharacterBody2D
 
-var animationStop = "paradoFac"
-var animationMovment = "andandoFac"
+var animationStop = "parado"
+
+var animationMovment = "andando"
 var arma = "faca"
+var weapon_scene: PackedScene = load("res://" + arma + ".tscn")
 var speed: int
 var player_chace = false
 var player = null
+var collet = 0
 var positionArma = null
 var areahit = false
 var morto = false
@@ -15,11 +18,11 @@ var armaArea = false
 var dictArma = {
 	"machado":	["andandoMach",	"paradoMach",	"golpeMach" , 4],
 	"martelo":	["andandoMat",	"paradoMat",	"golpeMat" , 7],
-	"espada":	["andandoEsp",	"paradoEsp",	"golpeEsp" ,6 ],
-	"faca": 	["andandoFac" , "paradoFac", "golpeFac", 2],
+	"espada":	["andandoEsp",	"paradoEsp",	"golpeEsp" ,4 ],
+	
 	"sMartelo":	["andandoSMat", "paradpSMat", "golpeSMat" , 6],
 	"smallSmace": ["andandoSmSmace" , "paradoSmSmace", "golpeSmSmace" , 6 ],
-	"semArma":	["andando",		"parado",		"golpe" , 4]
+	"faca":	["andando",		"parado",		"golpe" , 2]
 }
 
 
@@ -71,6 +74,12 @@ func inimigoMorto():
 		self.collision_layer = 0  # Remove a camada de colisão
 		self.collision_mask = 0
 		self.z_index = 0
+		var dropped_weapon = load("res://" + arma + ".tscn").instantiate() as Node2D
+		get_tree().current_scene.add_child(dropped_weapon)
+		
+		dropped_weapon.position = position
+		dropped_weapon.rotation = randf_range(0, 2 * PI)
+	
 		$morrendo.start()
 		print("Ele está morrendo")
 		if player:
@@ -105,11 +114,14 @@ func areaHit():
 	pass
 
 func _physics_process(delta):
+	
+		
+	
 	if(!morto):
 		
 	
 		
-		if bolAttack and animatedSprite.frame == 2:
+		if bolAttack and animatedSprite.frame == dictArma[arma][3]:
 			
 			attack()
 		
@@ -123,7 +135,7 @@ func _physics_process(delta):
 			var angle_to_weapon = direction.angle()
 			rotation = angle_to_weapon
 			if(!bolAttack):  # Rotacionar o inimigo para a direção da arma
-				animatedSprite.play("andando")
+				animatedSprite.play(animationMovment)
 			move_and_slide()
 			
 		
@@ -140,7 +152,7 @@ func _physics_process(delta):
 			move_and_slide()
 			
 			if !bolAttack:
-				animatedSprite.play("andando")
+				animatedSprite.play(animationMovment)
 			for enemy in get_tree().get_nodes_in_group("inimigo"):
 				if enemy != self:
 					var distance = position.distance_to(enemy.position)
@@ -151,11 +163,33 @@ func _physics_process(delta):
 		else:
 			
 			if !bolAttack and !morto and !armaArea:# Caso o inimigo não esteja perseguindo, animação de "parado"
-				animatedSprite.play("parado")
-func coletaArma():
-	pass
+				animatedSprite.play(animationStop)
+func coletaArma(armaC):
 	
+	if morto: return
+	 # Não faz nada se o inimigo estiver morto
+	if(arma == "faca" and arma != armaC):
+		
+	# Deixa a arma atual no chão antes de pegar a nova arma
+		drop_equipped_weapon(arma)
+		
+	# Agora troca para a nova arma
+		arma = armaC
+		animationStop = dictArma[arma][1]
+		animationMovment = dictArma[arma][0]
+		collet += 1
 	
+func verArma():
+	return arma
+func verCollect():
+	return collet
+	
+func drop_equipped_weapon(weapon_name):
+	var dropped_weapon = load("res://" + weapon_name + ".tscn").instantiate() as Node2D
+	get_tree().current_scene.add_child(dropped_weapon)
+		
+	dropped_weapon.position = position
+	dropped_weapon.rotation = randf_range(0, 2 * PI)
 
 func _on_detection_area_body_entered(body):
 	
@@ -208,16 +242,16 @@ func _on_hitbox_body_entered(body):
 		areahit = true
 		if !bolAttack and !morto:
 			
-			animatedSprite.play("golpe")
+			animatedSprite.play(dictArma[arma][2])
 			bolAttack = true
 			$Timer.start()
 		
 			
 		
 		elif  player_chace and !morto:
-			animatedSprite.play("andando")
+			animatedSprite.play(animationMovment)
 		elif !player_chace and !morto :
-			animatedSprite.play("parado")
+			animatedSprite.play(animationStop)
 	
 		 # Replace with function body.
 		
@@ -245,9 +279,9 @@ func _on_timer_timeout():
 	  # Para a animação do AnimationPlayer
 	bolAttack = false
 	if player_chace and !morto:
-		animatedSprite.play("andando")
+		animatedSprite.play(animationMovment)
 	elif !morto:
-		animatedSprite.play("parado")
+		animatedSprite.play(animationStop)
 	$Timer.stop()
 
 	
@@ -273,7 +307,7 @@ func _on_tentativ_area_body_entered(body):
 	if(body.is_in_group("jogador")):
 		if !bolAttack and !morto:
 				
-			animatedSprite.play("golpe")
+			animatedSprite.play(dictArma[arma][2])
 			bolAttack = true
 			$Timer.start()
 				
