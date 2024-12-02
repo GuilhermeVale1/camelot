@@ -5,6 +5,7 @@ signal danoInimigo
 signal danoPlayer
 signal lancamentoDeArma
 signal destroiparede
+signal contaMorte
 
 var player_is_armed: bool = false
 var previous_weapon_name: String
@@ -58,4 +59,5 @@ func destroiParede():
 	emit_signal("destroiparede")
 func reniciaCena():
 	get_tree().reload_current_scene()
-	
+func contaMorte2():
+	emit_signal("contaMorte")

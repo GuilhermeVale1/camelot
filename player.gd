@@ -30,6 +30,7 @@ var can_swap_weapons: bool = false
 func _ready():
 	projectile_scene = preload("res://PlayerProjectile.tscn")
 	GameMananger.danoPlayer.connect(deadPlayer)
+	GameMananger.contaMorte.connect(mortesCont)
 
 func _process(delta):
 	pass
@@ -44,11 +45,13 @@ func drop_equipped_weapon(weapon_name):
 func _physics_process(delta):
 
 	if(locale > 0 and mortes == 5):
+		GameMananger.desarma()
 		GameMananger.reniciaCena()
 	if(mortes == mapFases[locale]):
 		
 		GameMananger.destroiParede()
 	if !life:
+		GameMananger.desarma()
 		GameMananger.reniciaCena()
 	# Reinicia a velocidade a cada frame
 	velocity = Vector2()
