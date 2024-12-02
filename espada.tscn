@@ -10,8 +10,8 @@ size = Vector2(57, 27)
 radius = 85.0529
 
 [node name="espada" type="Area2D" groups=["arma", "espada"]]
-collision_layer = 2
-collision_mask = 3
+collision_layer = 8
+collision_mask = 6
 script = ExtResource("1_g6me5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -23,6 +23,8 @@ position = Vector2(2.5, 0.5)
 shape = SubResource("RectangleShape2D_2f2w4")
 
 [node name="hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_dg3n4")

@@ -33,13 +33,13 @@ position = Vector2(95, 68)
 position = Vector2(-273, -324)
 
 [node name="espada" parent="." instance=ExtResource("5_h2rtw")]
-position = Vector2(109.5, -81)
+position = Vector2(94.5, -101.5)
 
 [node name="Area2D2" parent="." instance=ExtResource("2_c0k8l")]
 position = Vector2(107, 4)
 
 [node name="guerreiroInimigo" parent="." instance=ExtResource("6_h7nrr")]
-position = Vector2(113.5, -143)
+position = Vector2(18.5, -101)
 scale = Vector2(5, 5)
 
 [node name="guerreiroInimigo2" parent="." instance=ExtResource("6_h7nrr")]

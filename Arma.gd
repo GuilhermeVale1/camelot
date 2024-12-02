@@ -32,7 +32,7 @@ func _on_body_entered(body):
 		print(arma)
 		body.z_index = 1
 	elif(body.is_in_group("inimigo")):
-		
+		print("inimigo no hitbox da coleta")
 		
 		enemy = true
 		

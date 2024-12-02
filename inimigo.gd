@@ -152,9 +152,8 @@ func _physics_process(delta):
 			
 			if !bolAttack and !morto and !armaArea:# Caso o inimigo não esteja perseguindo, animação de "parado"
 				animatedSprite.play("parado")
-func coletaEspada():
-	animationStop = "paradoEsp"
-	animationMovment = "andandoEsp"
+func coletaArma():
+	pass
 	
 	
 

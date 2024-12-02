@@ -153,7 +153,12 @@ func attack():
 			atack = true
 			animatedSprite.play(dictArma[nome][2])
 			var frame_golpe = dictArma[nome][3]
-			
+			if(nome == "machado" ):
+				GameMananger.golpeInimigo($Machs)
+			elif(nome == "espada" ):
+				GameMananger.golpeInimigo($Esp)
+			elif(nome == "martelo"):
+				GameMananger.golpeInimigo($Machs)
 				
 			$deal_attack.start()
 			
@@ -187,17 +192,7 @@ func _on_hitbox_body_entered(body):
 		if(atack):
 			var nome = GameMananger.verNome()
 			
-			if(nome == "machado" and timeAtk ):
-				GameMananger.golpeInimigo($golpeMachs)
-				
-			elif(nome == "espada" and timeAtk):
-				GameMananger.golpeInimigo($golpeEsp)
-				
-			elif(nome == "martelo" and timeAtk ):
-				GameMananger.golpeInimigo($golpeMachs)
-				
-			elif(nome == "semArma" and timeAtk):
-				GameMananger.golpeInimigo($soco)
+			
 				
 		
 	elif(body.is_in_group("parede") and (mortes >= mapFases[locale]) ):

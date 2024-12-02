@@ -234,7 +234,7 @@ size = Vector2(4.5, 6)
 [node name="guerreiroInimigo" type="CharacterBody2D" groups=["inimigo"]]
 texture_filter = 1
 rotation = -6.28319
-collision_layer = 5
+collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_61x2s")
 
@@ -251,13 +251,15 @@ position = Vector2(-0.25, 0)
 shape = SubResource("RectangleShape2D_a8owt")
 
 [node name="detectionArea" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 10
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectionArea"]
 shape = SubResource("CircleShape2D_egamf")
 
 [node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(1.75, 1.33991e-05)

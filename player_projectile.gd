@@ -41,6 +41,7 @@ func _ready():
 func _process(delta: float) -> void:
 	position += direction	* speed * delta
 	rotation += spin_speed	* delta
+	
 
 func projectile_stopped() -> void:
 	var dropped_weapon		= weapon_scene.instantiate() as Node2D

@@ -159,8 +159,8 @@ animations = [{
 
 [node name="inimigo" type="CharacterBody2D" groups=["inimigo"]]
 texture_filter = 1
-collision_layer = 5
-collision_mask = 5
+collision_layer = 10
+collision_mask = 10
 script = ExtResource("1_s4wku")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["inimigo"]]
@@ -176,6 +176,8 @@ sprite_frames = SubResource("SpriteFrames_hi5lt")
 animation = &"parado"
 
 [node name="hitbox" type="Area2D" parent="."]
+collision_layer = 10
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("RectangleShape2D_33gmp")
